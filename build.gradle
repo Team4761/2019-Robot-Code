@@ -1,10 +1,10 @@
 plugins {
     id "java"
 	id "idea"
-    id "edu.wpi.first.GradleRIO" version "2019.1.1-beta-2a"
+    id "edu.wpi.first.GradleRIO" version "2019.1.1-beta-4a"      
 }
 
-def ROBOT_MAIN_CLASS = "frc.robot.Main"
+def ROBOT_MAIN_CLASS = "org.robockets.deepspace.Main"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
@@ -15,14 +15,14 @@ deploy {
             // or from command line. If not found an exception will be thrown.
             // You can use getTeamOrDefault(team) instead of getTeamNumber if you
             // want to store a team number in this file.
-            team = getTeamNumber()
+            team = frc.getTeamNumber()
         }
     }
     artifacts {
         frcJavaArtifact('frcJava') {
             targets << "roborio"
             // Debug can be overridden by command line, for use with VSCode
-            debug = getDebugOrDefault(false)
+            debug = frc.getDebugOrDefault(false)
         }
         // Built in artifact to deploy arbitrary files to the roboRIO.
         fileTreeArtifact('frcStaticFileDeploy') {
@@ -35,18 +35,19 @@ deploy {
     }
 }
 
-// Maven central needed for JUnit
 repositories {
     mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
 // Also defines JUnit 4.
 dependencies {
-    compile wpilib()
-    compile javaVendorLibraries()
-    nativeZip jniRoboRIOVendorLibraries()
-    nativeDesktopZip jniDesktopVendorLibraries()
+    compile wpi.deps.wpilib()
+    compile wpi.deps.vendor.java()
+	implementation 'com.github.team4761:Robockets-Commons:v3.0.0'
+    nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
+    nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
     testCompile 'junit:junit:4.12'
 }
 
@@ -59,5 +60,5 @@ jar {
 }
 
 wrapper {
-    gradleVersion = '4.9'
+    gradleVersion = '5.0'
 }
