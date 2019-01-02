@@ -1,0 +1,8 @@
+language: java
+
+script: ./gradlew build
+
+jdk: oraclejdk11
+
+notifications:
+    slack: rmhsrobockets:5yuvOxtOMWZWUGGMDZVvuzwI
