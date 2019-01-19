@@ -5,7 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package org.robockets.deepspace;
+
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -35,6 +37,7 @@ public class OI {
   // Run the command while the button is being held down and interrupt it once
   // the button is released.
   // button.whileHeld(new ExampleCommand());
+  public static Joystick joystick = new Joystick (0);
 
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
