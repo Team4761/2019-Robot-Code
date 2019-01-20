@@ -5,15 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package org.robockets.deepspace;
 
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import org.robockets.deepspace.commands.ExampleCommand;
+import org.robockets.deepspace.commands.ResetEncoder;
+import org.robockets.deepspace.subsystems.Climber;
+import org.robockets.deepspace.subsystems.ExampleSubsystem;
+
+import static org.robockets.deepspace.RobotMap.climberEncoder;
+import static org.robockets.deepspace.RobotMap.climberMotor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +30,7 @@ import frc.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static Climber climber;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -35,10 +42,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    climber = new Climber();
+
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    //SmartDashboard.putData("Auto mode", m_chooser);
+
+    //SmartDashboard.putData(RobotMap.climberMotor);
+    /*climberMotor.setParameter(CANSparkMaxLowLevel.ConfigParameter.kSensorType, 1);
+    climberMotor.setMotorType(CANSparkMaxLowLevel.MotorType.kBrushed);
+    SmartDashboard.putData(climber.controller);
+    SmartDashboard.putData(new ResetEncoder());
+    SmartDashboard.putNumber("ClimberVal", 0);*/
   }
 
   /**
@@ -51,6 +67,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    //SmartDashboard.putNumber("EncoderVal", climber.pidSource.pidGet());
+    //SmartDashboard.putNumber("EncoderVal", climberEncoder.getPosition());
   }
 
   /**
@@ -120,6 +138,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    //RobotMap.climberMotor.set(SmartDashboard.getNumber("ClimberVal", 0));
   }
 
   /**

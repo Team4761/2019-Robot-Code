@@ -5,7 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package org.robockets.deepspace;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -23,4 +29,8 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+
+	public static CANSparkMax climberMotor = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
+
+	public static CANEncoder climberEncoder = new CANEncoder(climberMotor);
 }

@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package org.robockets.deepspace;
 
 /**
  * This class is the glue that binds the controls on the physical operator
