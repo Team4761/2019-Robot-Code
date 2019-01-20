@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.org.robockets.deepspace.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
