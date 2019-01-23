@@ -7,7 +7,9 @@
 
 package frc.org.robockets.deepspace.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.org.robockets.deepspace.RobotMap;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -15,6 +17,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ClimberSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+
+    public void moveLeftArm() {
+        //set speed of left climber
+        RobotMap.leftClimber.set(0.5);
+    }
+
+    public void moveRightArm() {
+        //set speed of right climber
+        RobotMap.rightClimber.set(0.5);
+    }
+
+    public void moveClimberSolenoidUp() {
+        //Move Robot upwards
+        RobotMap.climberSolenoid.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void moveClimberSolenoidDown() {
+        //Move Robot Downwards
+        RobotMap.climberSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
+
+    
 
     @Override
     public void initDefaultCommand() {

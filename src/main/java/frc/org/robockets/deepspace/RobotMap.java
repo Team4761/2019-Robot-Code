@@ -32,7 +32,7 @@ public class RobotMap {
     public static CANSparkMax rightClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
 
     public static DoubleSolenoid climberSolenoid = new DoubleSolenoid(0,1);
-    
+
 
 
 }
