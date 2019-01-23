@@ -7,6 +7,10 @@
 
 package frc.org.robockets.deepspace;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -23,4 +27,12 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+
+    public static CANSparkMax leftClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushed);
+    public static CANSparkMax rightClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
+
+    public static DoubleSolenoid climberSolenoid = new DoubleSolenoid(0,1);
+    
+
+
 }
