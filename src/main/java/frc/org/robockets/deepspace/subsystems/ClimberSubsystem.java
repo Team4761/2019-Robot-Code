@@ -18,14 +18,24 @@ public class ClimberSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void moveLeftArm() {
+    public void moveLeftArmForward() {
         //set speed of left climber
         RobotMap.leftClimber.set(0.5);
     }
 
-    public void moveRightArm() {
+    public void moveRightArmForward() {
         //set speed of right climber
         RobotMap.rightClimber.set(0.5);
+    }
+
+    public void moveLeftArmBackward() {
+        //set speed of left climber in reverse
+        Robotmap.leftClimber.set(-0.5);
+    }
+
+    public void moveRightArmBackward() {
+        //set speed of left climber in reverse
+        Robotmap.rightClimber.set(-0.5);
     }
 
     public void moveClimberSolenoidUp() {
@@ -38,7 +48,7 @@ public class ClimberSubsystem extends Subsystem {
         RobotMap.climberSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
-    
+
 
     @Override
     public void initDefaultCommand() {
