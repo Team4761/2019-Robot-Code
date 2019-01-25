@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.org.robockets.deepspace;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
