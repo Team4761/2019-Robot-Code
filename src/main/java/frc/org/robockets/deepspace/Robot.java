@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.org.robockets.deepspace.commands.Climb;
 import frc.org.robockets.deepspace.commands.ExampleCommand;
+import frc.org.robockets.deepspace.subsystems.ClimberSubsystem;
 import frc.org.robockets.deepspace.subsystems.ExampleSubsystem;
 
 /**
@@ -23,6 +25,7 @@ import frc.org.robockets.deepspace.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static ClimberSubsystem climber = new ClimberSubsystem();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
