@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.org.robockets.deepspace;
+package org.robockets.deepspace;
 
 import edu.wpi.first.wpilibj.RobotBase;
 
