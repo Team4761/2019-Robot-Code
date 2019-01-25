@@ -30,12 +30,12 @@ public class ClimberSubsystem extends Subsystem {
 
     public void moveLeftArmBackward() {
         //set speed of left climber in reverse
-        Robotmap.leftClimber.set(-0.5);
+        RobotMap.leftClimber.set(-0.5);
     }
 
     public void moveRightArmBackward() {
         //set speed of left climber in reverse
-        Robotmap.rightClimber.set(-0.5);
+        RobotMap.rightClimber.set(-0.5);
     }
 
     public void moveClimberSolenoidUp() {
