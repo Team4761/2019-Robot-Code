@@ -26,6 +26,7 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-    public static DoubleSolenoid hatchPusher = new DoubleSolenoid(0,1);
+    public static DoubleSolenoid outerPusher = new DoubleSolenoid(0,1);
+    public static DoubleSolenoid middlePusher = new DoubleSolenoid(2, 3);
 }
 

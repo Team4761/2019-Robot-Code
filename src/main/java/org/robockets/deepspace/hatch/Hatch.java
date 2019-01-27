@@ -10,7 +10,11 @@ public class Hatch extends Subsystem {
 
     }
 
-    public void setPiston (DoubleSolenoid.Value value) {
-        RobotMap.hatchPusher.set(value);
+    public void setOuterPistons(DoubleSolenoid.Value value) {
+        RobotMap.outerPusher.set(value);
+    }
+
+    public void setMiddlePiston(DoubleSolenoid.Value value) {
+        RobotMap.middlePusher.set(value);
     }
 }
