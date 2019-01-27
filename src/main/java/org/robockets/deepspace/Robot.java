@@ -5,15 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.org.robockets.deepspace;
+package org.robockets.deepspace;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.org.robockets.deepspace.commands.ExampleCommand;
-import frc.org.robockets.deepspace.subsystems.ExampleSubsystem;
+import org.robockets.deepspace.commands.ExampleCommand;
+import org.robockets.deepspace.hatch.Hatch;
+import org.robockets.deepspace.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +24,7 @@ import frc.org.robockets.deepspace.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static Hatch hatch;
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
@@ -35,6 +37,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    hatch = new Hatch();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
