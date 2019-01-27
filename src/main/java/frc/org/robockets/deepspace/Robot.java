@@ -47,8 +47,8 @@ public class Robot extends TimedRobot {
 
     //RobotMap.rightClimber.setInverted(true);
 
-    SmartDashboard.putData(RobotMap.leftClimber);
-    SmartDashboard.putData(RobotMap.rightClimber);
+    /*SmartDashboard.putData(RobotMap.leftClimber);
+    SmartDashboard.putData(RobotMap.rightClimber);*/
     SmartDashboard.putData(RobotMap.climberMotors);
     SmartDashboard.putData(RobotMap.climberSolenoids);
     SmartDashboard.putData(new Climb());

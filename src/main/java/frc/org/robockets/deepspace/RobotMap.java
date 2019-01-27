@@ -7,6 +7,7 @@
 
 package frc.org.robockets.deepspace;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -30,10 +31,12 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-	public static Victor leftClimber = new Victor(0);
-	public static Victor rightClimber = new Victor(1);
+	public static CANSparkMax leftClimber = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+	public static CANSparkMax rightClimber = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
 
 	public static SpeedControllerGroup climberMotors = new SpeedControllerGroup(leftClimber, rightClimber);
+
+	public static CANEncoder encoderTest = leftClimber.getEncoder();
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
 }
