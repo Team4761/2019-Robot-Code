@@ -7,12 +7,17 @@
 
 package frc.org.robockets.deepspace;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.org.robockets.deepspace.commands.Climb;
 import frc.org.robockets.deepspace.commands.ExampleCommand;
+import frc.org.robockets.deepspace.commands.ReleaseClimber;
+import frc.org.robockets.deepspace.subsystems.Climber;
 import frc.org.robockets.deepspace.subsystems.ExampleSubsystem;
 
 /**
@@ -23,7 +28,7 @@ import frc.org.robockets.deepspace.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static Climber climber;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -35,10 +40,21 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    climber = new Climber();
+
+
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+
+    //RobotMap.rightClimber.setInverted(true);
+
+    SmartDashboard.putData(RobotMap.leftClimber);
+    SmartDashboard.putData(RobotMap.rightClimber);
+    SmartDashboard.putData(RobotMap.climberMotors);
+    SmartDashboard.putData(RobotMap.climberSolenoids);
+    SmartDashboard.putData(new Climb());
+    SmartDashboard.putData(new ReleaseClimber());
+
+    LiveWindow.add(RobotMap.climberSolenoids);
   }
 
   /**
@@ -80,7 +96,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

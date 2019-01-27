@@ -101,9 +101,9 @@
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.5/c5b4c491aecb72e7c32a78da0b5c6b9cda8dee0f/gson-2.8.5-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Gradle: com.revrobotics.frc:SparkMax-java:1.0.26">
+    <library name="Gradle: com.revrobotics.frc:SparkMax-java:1.0.27">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.0.26/e527062dac6f8cecda9b70001561d32b2b9f0416/SparkMax-java-1.0.26.jar!/" />
+        <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.revrobotics.frc/SparkMax-java/1.0.27/891cdcbe2d7e45894bf8cbfda924aad14b184546/SparkMax-java-1.0.27.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />

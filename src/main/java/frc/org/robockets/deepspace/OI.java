@@ -7,6 +7,11 @@
 
 package frc.org.robockets.deepspace;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.org.robockets.deepspace.commands.Climb;
+import frc.org.robockets.deepspace.commands.ReleaseClimber;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -39,4 +44,13 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+	public static Joystick joystick = new Joystick(0);
+
+	public static JoystickButton aButton = new JoystickButton(joystick, 1);
+	public static JoystickButton bButton = new JoystickButton(joystick, 2);
+
+	public OI() {
+		aButton.whileHeld(new Climb());
+		bButton.whenPressed(new ReleaseClimber());
+	}
 }

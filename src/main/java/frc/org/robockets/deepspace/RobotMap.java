@@ -7,6 +7,12 @@
 
 package frc.org.robockets.deepspace;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Victor;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -23,4 +29,11 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+
+	public static Victor leftClimber = new Victor(0);
+	public static Victor rightClimber = new Victor(1);
+
+	public static SpeedControllerGroup climberMotors = new SpeedControllerGroup(leftClimber, rightClimber);
+
+	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
 }
