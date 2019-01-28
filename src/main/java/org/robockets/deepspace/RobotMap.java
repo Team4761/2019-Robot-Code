@@ -29,10 +29,10 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-    public static CANSparkMax frontLeftMotorController = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-    public static CANSparkMax backleftMotorController = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
-    public static CANSparkMax frontRightMotorController = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
-    public static CANSparkMax backRightMotorController = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax frontLeftMotorController = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax backleftMotorController = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax frontRightMotorController = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax backRightMotorController = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     public static SpeedControllerGroup left = new SpeedControllerGroup(frontLeftMotorController, backleftMotorController);
     public static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotorController, backRightMotorController);

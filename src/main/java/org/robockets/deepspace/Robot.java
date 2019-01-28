@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.commands.ExampleCommand;
 import org.robockets.deepspace.drivetrain.Drivetrain;
+import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.subsystems.ExampleSubsystem;
 
 /**
@@ -41,6 +42,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivetrain = new Drivetrain();
+
+    joyride = new Joyride();
+
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());

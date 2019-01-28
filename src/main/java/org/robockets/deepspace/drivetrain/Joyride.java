@@ -15,8 +15,8 @@ public class Joyride extends Command {
     }
 
     protected void execute() {
-        double translate = -OI.joystick.getRawAxis(1);
-        double rotate = OI.joystick.getRawAxis(4);
+        double translate = OI.joystick.getRawAxis(1);
+        double rotate = -OI.joystick.getRawAxis(4)*0.6;
 
         Robot.drivetrain.driveArcade(translate, rotate);
     }
