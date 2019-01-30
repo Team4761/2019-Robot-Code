@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.commands.ExampleCommand;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
-import org.robockets.deepspace.subsystems.ClimberSubsystem;
+import org.robockets.deepspace.subsystems.Climber;
 import org.robockets.deepspace.subsystems.ExampleSubsystem;
 
 /**
@@ -26,7 +26,7 @@ import org.robockets.deepspace.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ClimberSubsystem climber = new ClimberSubsystem();
+  public static Climber climber = new Climber();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static Drivetrain drivetrain;
 
