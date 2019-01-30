@@ -10,6 +10,8 @@ package org.robockets.deepspace;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -33,6 +35,12 @@ public class RobotMap {
 
     public static DoubleSolenoid climberSolenoid = new DoubleSolenoid(0,1);
 
+    public static CANSparkMax frontLeftMotorController = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax backleftMotorController = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax frontRightMotorController = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSparkMax backRightMotorController = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-
+    public static SpeedControllerGroup left = new SpeedControllerGroup(frontLeftMotorController, backleftMotorController);
+    public static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotorController, backRightMotorController);
+    public static DifferentialDrive robotDrive = new DifferentialDrive(left, right);
 }
