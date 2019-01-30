@@ -156,5 +156,9 @@ gradle-app.setting
 .settings/
 bin/
 
+*.iml
+*.ipr
+*.iws
+.idea/
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
