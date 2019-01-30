@@ -19,8 +19,8 @@ public class Climber extends Subsystem {
     // here. Call these from Commands.
 
     public void moveClimberArms(double speed){
-        RobotMap.leftClimber.set(speed);
-        RobotMap.rightClimber.set(speed);
+        RobotMap.leftClimberArm.set(speed);
+        RobotMap.rightClimberArm.set(speed);
 
     }
 

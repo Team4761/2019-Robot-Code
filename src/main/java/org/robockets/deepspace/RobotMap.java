@@ -30,8 +30,8 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-    public static CANSparkMax leftClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushed);
-    public static CANSparkMax rightClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
+    public static CANSparkMax leftClimberArm = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushed);
+    public static CANSparkMax rightClimberArm = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
 
     public static DoubleSolenoid climberSolenoid = new DoubleSolenoid(0,1);
 
