@@ -9,9 +9,9 @@ package org.robockets.deepspace;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.robockets.deepspace.commands.Climb;
-import org.robockets.deepspace.commands.ExtendPistons;
-import org.robockets.deepspace.commands.ReleaseClimber;
+import org.robockets.deepspace.climber.Climb;
+import org.robockets.deepspace.climber.ExtendPistons;
+import org.robockets.deepspace.climber.ReleaseClimber;
 
 /**
  * This class is the glue that binds the controls on the physical operator

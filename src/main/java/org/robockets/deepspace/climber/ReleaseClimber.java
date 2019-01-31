@@ -1,16 +1,16 @@
-package org.robockets.deepspace.commands;
+package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;
 
-public class ExtendPistons extends Command {
+public class ReleaseClimber extends Command {
 
-	public ExtendPistons() {
-
+	public ReleaseClimber() {
+		requires(Robot.climber);
 	}
 
 	protected void initialize() {
-		Robot.climber.extendPistons();
+		Robot.climber.closePistons();
 	}
 
 	protected void execute() {
@@ -21,6 +21,7 @@ public class ExtendPistons extends Command {
 	}
 
 	protected void end() {
+		//Robot.climber.stopPistons();
 	}
 
 	protected void interrupted() {

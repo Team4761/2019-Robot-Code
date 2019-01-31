@@ -1,4 +1,4 @@
-package org.robockets.deepspace.commands;
+package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;

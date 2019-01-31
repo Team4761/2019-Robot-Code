@@ -46,7 +46,10 @@ public class RobotMap {
 
 	public static SpeedControllerGroup climberMotors = new SpeedControllerGroup(leftClimber, rightClimber);
 
-	public static CANEncoder encoderTest = leftClimber.getEncoder();
+	public static CANEncoder frontLeftEncoder = frontLeftMotorController.getEncoder();
+	public static CANEncoder backLeftEncoder = backleftMotorController.getEncoder();
+	public static CANEncoder frontRightEncoder = frontRightMotorController.getEncoder();
+	public static CANEncoder backRightEncoder = backRightMotorController.getEncoder();
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
 }

@@ -1,4 +1,4 @@
-package org.robockets.deepspace.subsystems;
+package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;

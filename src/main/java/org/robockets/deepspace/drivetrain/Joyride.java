@@ -1,4 +1,4 @@
-package org.robockets.deepspace.commands;
+package org.robockets.deepspace.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.OI;

@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.robockets.deepspace.commands.Climb;
-import org.robockets.deepspace.commands.ReleaseClimber;
-import org.robockets.deepspace.subsystems.Climber;
-import org.robockets.deepspace.subsystems.Drivetrain;
+import org.robockets.deepspace.climber.Climb;
+import org.robockets.deepspace.climber.ReleaseClimber;
+import org.robockets.deepspace.climber.Climber;
+import org.robockets.deepspace.drivetrain.Drivetrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
