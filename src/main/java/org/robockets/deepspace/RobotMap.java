@@ -51,5 +51,8 @@ public class RobotMap {
 	public static CANEncoder frontRightEncoder = frontRightMotorController.getEncoder();
 	public static CANEncoder backRightEncoder = backRightMotorController.getEncoder();
 
+	public static CANEncoder leftClimberEncoder = leftClimber.getEncoder();
+	public static CANEncoder rightClimberEncoder = rightClimber.getEncoder();
+
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
 }
