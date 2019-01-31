@@ -1,7 +1,7 @@
-package frc.org.robockets.deepspace.commands;
+package org.robockets.deepspace.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.org.robockets.deepspace.Robot;
+import org.robockets.deepspace.Robot;
 
 public class ReleaseClimber extends Command {
 

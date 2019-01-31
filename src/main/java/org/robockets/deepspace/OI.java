@@ -5,12 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.org.robockets.deepspace;
+package org.robockets.deepspace;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.org.robockets.deepspace.commands.Climb;
-import frc.org.robockets.deepspace.commands.ReleaseClimber;
+import org.robockets.deepspace.commands.Climb;
+import org.robockets.deepspace.commands.ExtendPistons;
+import org.robockets.deepspace.commands.ReleaseClimber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,9 +49,11 @@ public class OI {
 
 	public static JoystickButton aButton = new JoystickButton(joystick, 1);
 	public static JoystickButton bButton = new JoystickButton(joystick, 2);
+	public static JoystickButton xButton = new JoystickButton(joystick, 3);
 
 	public OI() {
 		aButton.whileHeld(new Climb());
 		bButton.whenPressed(new ReleaseClimber());
+		xButton.whenPressed(new ExtendPistons());
 	}
 }

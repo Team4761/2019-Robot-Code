@@ -5,10 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.org.robockets.deepspace.commands;
+package org.robockets.deepspace.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.org.robockets.deepspace.Robot;
 
 /**
  * An example command.  You can replace me with your own command.

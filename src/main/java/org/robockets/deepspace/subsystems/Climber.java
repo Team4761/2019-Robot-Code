@@ -1,8 +1,8 @@
-package frc.org.robockets.deepspace.subsystems;
+package org.robockets.deepspace.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.org.robockets.deepspace.RobotMap;
+import org.robockets.deepspace.RobotMap;
 
 public class Climber extends Subsystem {
 
