@@ -10,6 +10,7 @@ package org.robockets.deepspace;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
@@ -53,6 +54,8 @@ public class RobotMap {
 
 	public static CANEncoder leftClimberEncoder = leftClimber.getEncoder();
 	public static CANEncoder rightClimberEncoder = rightClimber.getEncoder();
+
+	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
 }
