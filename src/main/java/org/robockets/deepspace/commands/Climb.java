@@ -6,6 +6,8 @@ import org.robockets.deepspace.Robot;
 
 public class Climb extends Command {
 
+    int loopCounter = 0;
+
     protected void initialize() {
         Robot.climber.moveClimberSolenoid(DoubleSolenoid.Value.kForward);
         setTimeout(3);
@@ -15,7 +17,14 @@ public class Climb extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.climber.moveClimberArms(0.5);
+        if (loopCounter <= 25){
+            Robot.climber.moveClimberArms(0.5);
+            Robot.climber.moveClimberSolenoid(DoubleSolenoid.Value.kForward);
+            loopCounter++;
+
+        }
+
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
