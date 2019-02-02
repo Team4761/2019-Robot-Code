@@ -36,6 +36,25 @@ public class Climber extends Subsystem {
 		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kReverse);
 	}
 
+	/**
+	 *
+	 * @param speed Vertical speed in inches per seoncd
+	 */
+	public void setSpeed(double speed) {
+		climberPIDController.setSetpoint(speed);
+	}
+
+	public void enablePID() {
+		climberPIDController.enable();
+	}
+
+	public void disablePID() {
+		climberPIDController.disable();
+	}
+
+	public void moveBottomWheels(double speed) {
+		RobotMap.climberWheels.set(speed);
+	}
 
 	public void stopPistons() {
 		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kOff);

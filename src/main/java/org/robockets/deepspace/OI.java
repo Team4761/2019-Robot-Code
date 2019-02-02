@@ -9,9 +9,9 @@ package org.robockets.deepspace;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.robockets.deepspace.climber.Climb;
+import org.robockets.deepspace.climber.MoveArms;
 import org.robockets.deepspace.climber.ExtendPistons;
-import org.robockets.deepspace.climber.ReleaseClimber;
+import org.robockets.deepspace.climber.RetractPistons;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -52,8 +52,8 @@ public class OI {
 	public static JoystickButton xButton = new JoystickButton(joystick, 3);
 
 	public OI() {
-		aButton.whileHeld(new Climb());
-		bButton.whenPressed(new ReleaseClimber());
+		aButton.whileHeld(new MoveArms());
+		bButton.whenPressed(new RetractPistons());
 		xButton.whenPressed(new ExtendPistons());
 	}
 }

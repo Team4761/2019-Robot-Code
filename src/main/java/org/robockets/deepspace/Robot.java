@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.robockets.deepspace.climber.Climb;
-import org.robockets.deepspace.climber.ReleaseClimber;
+import org.robockets.deepspace.climber.MoveArms;
+import org.robockets.deepspace.climber.RetractPistons;
 import org.robockets.deepspace.climber.Climber;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 
@@ -42,7 +42,6 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
     climber = new Climber();
 
-
     m_oi = new OI();
 
     //RobotMap.rightClimber.setInverted(true);
@@ -51,8 +50,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(RobotMap.rightClimber);*/
     SmartDashboard.putData(RobotMap.climberMotors);
     SmartDashboard.putData(RobotMap.climberSolenoids);
-    SmartDashboard.putData(new Climb());
-    SmartDashboard.putData(new ReleaseClimber());
+    SmartDashboard.putData(new MoveArms());
+    SmartDashboard.putData(new RetractPistons());
 
     LiveWindow.add(RobotMap.climberSolenoids);
   }

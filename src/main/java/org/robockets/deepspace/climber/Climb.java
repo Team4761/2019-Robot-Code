@@ -1,35 +1,16 @@
 package org.robockets.deepspace.climber;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.robockets.deepspace.Robot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.robockets.deepspace.drivetrain.DriveStraight;
+import org.robockets.deepspace.drivetrain.DriveTimed;
 
-public class Climb extends Command {
+public class Climb extends CommandGroup {
 
 	public Climb() {
-		requires(Robot.climber);
-	}
-
-	protected void initialize() {
-		//Robot.climber.extendPistons();
-		//setTimeout(1); // For now... This will eventually be based on encoders
-	}
-
-	protected void execute() {
-		Robot.climber.moveArms(0.9);
-	}
-
-	protected boolean isFinished() {
-		//return isTimedOut();
-		return false;
-	}
-
-	protected void end() {
-		Robot.climber.moveArms(0);
-		//Robot.climber.closePistons();
-		Robot.climber.stopPistons();
-	}
-
-	protected void interrupted() {
-		end();
+		addParallel(new ExtendPistons());
+		addParallel(new MoveBottomWheels(0.5, 10));
+		addSequential(new MoveArmsFixed()); // This goes until it is almost cleared
+		addParallel(new RetractPistons());
+		addParallel(new DriveTimed(0.75, 5));
 	}
 }

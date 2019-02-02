@@ -3,25 +3,29 @@ package org.robockets.deepspace.climber;
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;
 
-public class ReleaseClimber extends Command {
+public class MoveBottomWheels extends Command {
 
-	public ReleaseClimber() {
-		requires(Robot.climber);
+	private double speed;
+	private double time;
+
+	public MoveBottomWheels(double speed, double time) {
+		this.speed = speed;
+		this.time = time;
 	}
 
 	protected void initialize() {
-		Robot.climber.closePistons();
+		setTimeout(time);
 	}
 
 	protected void execute() {
+		Robot.climber.moveBottomWheels(speed);
 	}
 
 	protected boolean isFinished() {
-		return true;
+		return isTimedOut();
 	}
 
 	protected void end() {
-		//Robot.climber.stopPistons();
 	}
 
 	protected void interrupted() {

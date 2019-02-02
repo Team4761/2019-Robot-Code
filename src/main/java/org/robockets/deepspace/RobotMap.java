@@ -55,6 +55,8 @@ public class RobotMap {
 	public static CANEncoder leftClimberEncoder = leftClimber.getEncoder();
 	public static CANEncoder rightClimberEncoder = rightClimber.getEncoder();
 
+	public static Victor climberWheels = new Victor(6);
+
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);

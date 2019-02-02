@@ -18,9 +18,12 @@ public class Drivetrain extends Subsystem {
 
 	private PIDController gyroPIDController;
 
+	DoubleEncoderPIDSource leftPIDSource;
+	DoubleEncoderPIDSource rightPIDSource;
+
 	public Drivetrain() {
-		DoubleEncoderPIDSource leftPIDSource = new DoubleEncoderPIDSource(RobotMap.frontLeftEncoder, RobotMap.backLeftEncoder, INCHES_PER_TICK);
-		DoubleEncoderPIDSource rightPIDSource = new DoubleEncoderPIDSource(RobotMap.frontRightEncoder, RobotMap.backRightEncoder, INCHES_PER_TICK);
+		leftPIDSource = new DoubleEncoderPIDSource(RobotMap.frontLeftEncoder, RobotMap.backLeftEncoder, INCHES_PER_TICK);
+		rightPIDSource = new DoubleEncoderPIDSource(RobotMap.frontRightEncoder, RobotMap.backRightEncoder, INCHES_PER_TICK);
 		
 		leftPIDSource.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightPIDSource.setPIDSourceType(PIDSourceType.kDisplacement);
@@ -48,6 +51,29 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
+	}
+
+	/**
+	 *
+	 * @param distance Distance in inches
+	 */
+	public void setRelativePosition(double distance) {
+		leftPodPIDController.setSetpoint(leftPIDSource.pidGet() + distance);
+		rightPodPIDController.setSetpoint(rightPIDSource.pidGet() + distance);
+	}
+
+	public void enableTranslatePID() {
+		leftPodPIDController.enable();
+		rightPodPIDController.enable();
+	}
+
+	public void disableTranslatePID() {
+		leftPodPIDController.disable();
+		rightPodPIDController.disable();
+	}
+
+	public boolean isTranslateFinished() {
+		return leftPodPIDController.onTarget() && rightPodPIDController.onTarget();
 	}
 
 	public void driveArcade(double translate, double rotate) {

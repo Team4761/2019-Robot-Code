@@ -6,7 +6,7 @@ import org.robockets.deepspace.RobotMap;
 
 public class ClimberPIDSource implements PIDSource {
 
-	private final double RADIUS = 1.0;
+	private final double RADIUS = 1.0; // In inches
 
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
