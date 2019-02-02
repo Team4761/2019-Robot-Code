@@ -17,6 +17,7 @@ import org.robockets.deepspace.climber.MoveArms;
 import org.robockets.deepspace.climber.RetractPistons;
 import org.robockets.deepspace.climber.Climber;
 import org.robockets.deepspace.drivetrain.Drivetrain;
+import org.robockets.deepspace.hatch.Hatch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,6 +28,7 @@ import org.robockets.deepspace.drivetrain.Drivetrain;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
+  public static Hatch hatch;
   public static Climber climber;
   public static OI m_oi;
 
@@ -40,6 +42,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivetrain = new Drivetrain();
+    hatch = new Hatch();
     climber = new Climber();
 
     m_oi = new OI();

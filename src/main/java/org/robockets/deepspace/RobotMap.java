@@ -33,6 +33,8 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
+
+	// Drivetrain
 	public static CANSparkMax frontLeftMotorController = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
 	public static CANSparkMax backleftMotorController = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
 	public static CANSparkMax frontRightMotorController = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -42,22 +44,31 @@ public class RobotMap {
 	public static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotorController, backRightMotorController);
 	public static DifferentialDrive robotDrive = new DifferentialDrive(left, right);
 
-	public static CANSparkMax leftClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
-	public static CANSparkMax rightClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
-
-	public static SpeedControllerGroup climberMotors = new SpeedControllerGroup(leftClimber, rightClimber);
-
 	public static CANEncoder frontLeftEncoder = frontLeftMotorController.getEncoder();
 	public static CANEncoder backLeftEncoder = backleftMotorController.getEncoder();
 	public static CANEncoder frontRightEncoder = frontRightMotorController.getEncoder();
 	public static CANEncoder backRightEncoder = backRightMotorController.getEncoder();
+
+	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
+
+	// Climber
+
+	public static CANSparkMax leftClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
+	public static CANSparkMax rightClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+	public static SpeedControllerGroup climberMotors = new SpeedControllerGroup(leftClimber, rightClimber);
 
 	public static CANEncoder leftClimberEncoder = leftClimber.getEncoder();
 	public static CANEncoder rightClimberEncoder = rightClimber.getEncoder();
 
 	public static Victor climberWheels = new Victor(6);
 
-	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
+
+
+	// Hatch
+
+	public static DoubleSolenoid outerPusher = new DoubleSolenoid(2,3);
+	public static DoubleSolenoid middlePusher = new DoubleSolenoid(4, 5);
 }
