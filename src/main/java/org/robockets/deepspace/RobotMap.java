@@ -7,13 +7,11 @@
 
 package org.robockets.deepspace;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
@@ -23,16 +21,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
-
 
 	// Drivetrain
 	public static CANSparkMax frontLeftMotorController = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -51,7 +39,6 @@ public class RobotMap {
 
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
-
 	// Climber
 
 	public static CANSparkMax leftClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -62,13 +49,20 @@ public class RobotMap {
 	public static CANEncoder leftClimberEncoder = leftClimber.getEncoder();
 	public static CANEncoder rightClimberEncoder = rightClimber.getEncoder();
 
-	public static Victor climberWheels = new Victor(6);
+	public static WPI_VictorSPX climberWheels = new WPI_VictorSPX(6);
 
-	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(0, 1);
-
+	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(4, 5);
 
 	// Hatch
 
 	public static DoubleSolenoid outerPusher = new DoubleSolenoid(2,3);
-	public static DoubleSolenoid middlePusher = new DoubleSolenoid(4, 5);
+	public static DoubleSolenoid middlePusher = new DoubleSolenoid(0, 1);
+
+	// Cargo
+
+	public static CANSparkMax cargoArmMotor = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
+	public static WPI_VictorSPX cargoIntakeMotor = new WPI_VictorSPX(7);
+
+	// Misc
+	public static Compressor compressor = new Compressor();
 }

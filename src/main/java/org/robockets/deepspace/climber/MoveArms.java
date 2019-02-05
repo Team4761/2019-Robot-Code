@@ -5,8 +5,11 @@ import org.robockets.deepspace.Robot;
 
 public class MoveArms extends Command {
 
-	public MoveArms() {
+	private double multi;
+
+	public MoveArms(double multi) {
 		requires(Robot.climber);
+		this.multi = multi;
 	}
 
 	protected void initialize() {
@@ -15,7 +18,7 @@ public class MoveArms extends Command {
 	}
 
 	protected void execute() {
-		Robot.climber.moveArms(0.9);
+		Robot.climber.moveArms(0.15*multi);
 	}
 
 	protected boolean isFinished() {

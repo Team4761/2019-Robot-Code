@@ -17,6 +17,7 @@ import org.robockets.deepspace.climber.MoveArms;
 import org.robockets.deepspace.climber.RetractPistons;
 import org.robockets.deepspace.climber.Climber;
 import org.robockets.deepspace.drivetrain.Drivetrain;
+import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
 
 /**
@@ -32,6 +33,8 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static OI m_oi;
 
+  private static Command joyride;
+
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -45,18 +48,21 @@ public class Robot extends TimedRobot {
     hatch = new Hatch();
     climber = new Climber();
 
+    joyride = new Joyride();
+
     m_oi = new OI();
 
-    //RobotMap.rightClimber.setInverted(true);
+    RobotMap.leftClimber.setInverted(true);
 
     /*SmartDashboard.putData(RobotMap.leftClimber);
     SmartDashboard.putData(RobotMap.rightClimber);*/
     SmartDashboard.putData(RobotMap.climberMotors);
     SmartDashboard.putData(RobotMap.climberSolenoids);
-    SmartDashboard.putData(new MoveArms());
+    //SmartDashboard.putData(new MoveArms(1));
     SmartDashboard.putData(new RetractPistons());
 
     LiveWindow.add(RobotMap.climberSolenoids);
+
   }
 
   /**
@@ -129,6 +135,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    joyride.start();
   }
 
   /**
