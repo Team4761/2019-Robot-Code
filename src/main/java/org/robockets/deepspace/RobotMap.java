@@ -51,7 +51,7 @@ public class RobotMap {
 
 	public static WPI_VictorSPX climberWheels = new WPI_VictorSPX(6);
 
-	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(4, 5);
+	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(5, 4);
 
 	// Hatch
 

@@ -28,6 +28,14 @@ public class Climber extends Subsystem {
 		RobotMap.climberMotors.set(speed);
 	}
 
+	public void moveLeftArm(double speed) {
+		RobotMap.leftClimber.set(speed);
+	}
+
+	public void moveRightArm(double speed) {
+		RobotMap.rightClimber.set(speed);
+	}
+
 	public void extendPistons() {
 		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kForward);
 	}

@@ -36,8 +36,8 @@ public class OI {
 		xButton.whenPressed(new ExtendPistons());
 		yButton.whenPressed(new ToggleCompressor());
 
-		leftBumper.whileHeld(new MoveArms(-1.0));
-		rightBumper.whileHeld(new MoveArms(1.0));
+		/*leftBumper.whileHeld(new MoveArms(-1.0));
+		rightBumper.whileHeld(new MoveArms(1.0));*/
 
 	}
 }

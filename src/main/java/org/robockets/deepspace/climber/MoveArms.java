@@ -1,15 +1,16 @@
 package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.robockets.deepspace.OI;
 import org.robockets.deepspace.Robot;
 
 public class MoveArms extends Command {
 
 	private double multi;
 
-	public MoveArms(double multi) {
+	public MoveArms(/*double multi*/) {
 		requires(Robot.climber);
-		this.multi = multi;
+		//this.multi = multi;
 	}
 
 	protected void initialize() {
@@ -18,7 +19,20 @@ public class MoveArms extends Command {
 	}
 
 	protected void execute() {
-		Robot.climber.moveArms(0.15*multi);
+		//Robot.climber.moveArms(0.15*multi);
+		double leftVal = OI.joystick.getRawAxis(2)*0.20;
+		double rightVal = OI.joystick.getRawAxis(3)*0.20;
+
+		if (OI.joystick.getRawButton(5)) {
+			leftVal *= -2.0;
+		}
+
+		if (OI.joystick.getRawButton(6)) {
+			rightVal *= -2.0;
+		}
+
+		Robot.climber.moveLeftArm(leftVal);
+		Robot.climber.moveRightArm(rightVal);
 	}
 
 	protected boolean isFinished() {
@@ -27,7 +41,7 @@ public class MoveArms extends Command {
 	}
 
 	protected void end() {
-		Robot.climber.moveArms(0);
+		//Robot.climber.moveArms(0);
 		//Robot.climber.closePistons();
 		//Robot.climber.stopPistons();
 	}

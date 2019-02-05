@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   private static Command joyride;
+  private static Command moveArms;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
     climber = new Climber();
 
     joyride = new Joyride();
+    moveArms = new MoveArms();
 
     m_oi = new OI();
 
@@ -136,6 +138,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     joyride.start();
+    moveArms.start();
   }
 
   /**
