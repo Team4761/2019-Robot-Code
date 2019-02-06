@@ -63,6 +63,8 @@ public class RobotMap {
 	public static CANSparkMax cargoArmMotor = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
 	public static WPI_VictorSPX cargoIntakeMotor = new WPI_VictorSPX(7);
 
+	public static CANEncoder cargoEncoder = cargoArmMotor.getEncoder();
+
 	public static DoubleSolenoid cargoSolenoid = new DoubleSolenoid(6, 7);
 
 	public static DigitalInput cargoBreakbeam = new DigitalInput(0);

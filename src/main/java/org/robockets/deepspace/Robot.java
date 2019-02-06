@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.robockets.deepspace.cargo.Cargo;
 import org.robockets.deepspace.climber.MoveArms;
 import org.robockets.deepspace.climber.RetractPistons;
 import org.robockets.deepspace.climber.Climber;
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static Hatch hatch;
   public static Climber climber;
+  public static Cargo cargo;
   public static OI m_oi;
 
   private static Command joyride;
@@ -48,6 +50,7 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
     hatch = new Hatch();
     climber = new Climber();
+    cargo = new Cargo();
 
     joyride = new Joyride();
     moveArms = new MoveArms();
