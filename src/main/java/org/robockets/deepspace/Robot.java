@@ -58,13 +58,10 @@ public class Robot extends TimedRobot {
 
     /*SmartDashboard.putData(RobotMap.leftClimber);
     SmartDashboard.putData(RobotMap.rightClimber);*/
-    SmartDashboard.putData(RobotMap.climberMotors);
-    SmartDashboard.putData(RobotMap.climberSolenoids);
+    //SmartDashboard.putData(RobotMap.climberMotors);
+    //SmartDashboard.putData(RobotMap.climberSolenoids);
     //SmartDashboard.putData(new MoveArms(1));
-    SmartDashboard.putData(new RetractPistons());
-
-    LiveWindow.add(RobotMap.climberSolenoids);
-
+    //SmartDashboard.putData(new RetractPistons());
   }
 
   /**
