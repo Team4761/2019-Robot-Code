@@ -6,26 +6,39 @@ import org.robockets.deepspace.RobotMap;
 
 public class MoveArmsFixed extends Command {
 
-	private final double FINAL_ENCODER_POS = 100.0; // This is about when the front wheels touch the ground
+	private double targetVerticalSpeed = 0;
 
-	public MoveArmsFixed() {
+	private double targetPos = 0; // This is about when the front wheels touch the ground
+
+	public MoveArmsFixed(double speed, double target) {
 		requires(Robot.climber);
+		targetVerticalSpeed = speed;
+		targetPos = target;
 	}
 
 	protected void initialize() {
-		Robot.climber.setSpeed(4); // TODO: Put an actual value here
-		Robot.climber.enablePID();
+		/*Robot.climber.setLeftSpeed(4); // TODO: Put an actual value here
+		Robot.climber.setRightSpeed(4);*/
 	}
 
 	protected void execute() {
+
+		double theta = RobotMap.leftClimberEncoder.getPosition()/Robot.climber.TURN_RADIUS;
+		double sin = Math.sin(theta);
+
+		double angularSpeed = targetVerticalSpeed/(Robot.climber.TURN_RADIUS*sin);
+
+		Robot.climber.setLeftSpeed(angularSpeed);
+		Robot.climber.setRightSpeed(angularSpeed);
 	}
 
 	protected boolean isFinished() {
-		return RobotMap.leftClimberEncoder.getPosition() >= FINAL_ENCODER_POS;
+		return RobotMap.leftClimberEncoder.getPosition() >= targetPos;
 	}
 
 	protected void end() {
-		Robot.climber.disablePID();
+		Robot.climber.disableLeftPID();
+		Robot.climber.disableRightPID();
 	}
 
 	protected void interrupted() {
