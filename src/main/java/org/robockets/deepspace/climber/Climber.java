@@ -7,6 +7,7 @@
 
 package org.robockets.deepspace.climber;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.robockets.deepspace.RobotMap;
@@ -29,6 +30,9 @@ public class Climber extends Subsystem {
         RobotMap.climberSolenoid.set(value);
     }
 
+    public void moveClimberWheels(double speed){
+        RobotMap.smallClimberWheelThingy.set(speed);
+    }
 
 
     @Override

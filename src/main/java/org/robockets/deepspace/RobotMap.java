@@ -7,6 +7,7 @@
 
 package org.robockets.deepspace;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -33,6 +34,8 @@ public class RobotMap {
     public static CANSparkMax leftClimberArm = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushed);
     public static CANSparkMax rightClimberArm = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
 
+    public static WPI_VictorSPX smallClimberWheelThingy = new WPI_VictorSPX(6);
+
     public static DoubleSolenoid climberSolenoid = new DoubleSolenoid(0,1);
 
     public static CANSparkMax frontLeftMotorController = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -43,4 +46,6 @@ public class RobotMap {
     public static SpeedControllerGroup left = new SpeedControllerGroup(frontLeftMotorController, backleftMotorController);
     public static SpeedControllerGroup right = new SpeedControllerGroup(frontRightMotorController, backRightMotorController);
     public static DifferentialDrive robotDrive = new DifferentialDrive(left, right);
+
+
 }
