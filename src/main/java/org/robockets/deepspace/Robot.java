@@ -22,7 +22,7 @@ import org.robockets.deepspace.climber.Climber;
  */
 public class Robot extends TimedRobot {
 
-  public static Climber climber = new Climber();
+  public static Climber climber;
 
   public static Drivetrain drivetrain;
 
@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivetrain = new Drivetrain();
+    climber = new Climber();
 
     joyride = new Joyride();
 

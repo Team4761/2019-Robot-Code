@@ -2,7 +2,9 @@ package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
+import org.robockets.deepspace.RobotMap;
 import org.robockets.deepspace.Robot;
+
 
 public class Climb extends Command {
 
