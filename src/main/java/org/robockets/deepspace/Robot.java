@@ -17,6 +17,7 @@ import org.robockets.deepspace.cargo.Cargo;
 import org.robockets.deepspace.climber.MoveArms;
 import org.robockets.deepspace.climber.RetractPistons;
 import org.robockets.deepspace.climber.Climber;
+import org.robockets.deepspace.climber.StopPID;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
@@ -59,6 +60,8 @@ public class Robot extends TimedRobot {
 
     RobotMap.leftClimber.setInverted(true);
 
+    SmartDashboard.putData(new StopPID());
+
     /*SmartDashboard.putData(RobotMap.leftClimber);
     SmartDashboard.putData(RobotMap.rightClimber);*/
     //SmartDashboard.putData(RobotMap.climberMotors);
@@ -77,6 +80,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Left Climber Ticks", RobotMap.leftClimberEncoder.getPosition()*climber.TICKS_PER_DEG);
+    SmartDashboard.putNumber("Right Climber Ticks", RobotMap.rightClimberEncoder.getPosition()*climber.TICKS_PER_DEG);
   }
 
   /**
@@ -138,7 +143,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     joyride.start();
-    moveArms.start();
+    //moveArms.start();
   }
 
   /**

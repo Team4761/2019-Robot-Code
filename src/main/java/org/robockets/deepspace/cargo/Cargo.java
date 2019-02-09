@@ -39,13 +39,13 @@ public class Cargo extends Subsystem {
 		m_pidController.setOutputRange(kMinOutput, kMaxOutput);
 
 
-		SmartDashboard.putNumber("Cargo P Gain", kP);
+		/*SmartDashboard.putNumber("Cargo P Gain", kP);
 		SmartDashboard.putNumber("Cargo I Gain", kI);
 		SmartDashboard.putNumber("Cargo D Gain", kD);
 		//SmartDashboard.putNumber("Cargo I Zone", kIz);
 		SmartDashboard.putNumber("Cargo Feed Forward", kFF);
 		SmartDashboard.putNumber("Cargo Max Output", kMaxOutput);
-		SmartDashboard.putNumber("Cargo Min Output", kMinOutput);
+		SmartDashboard.putNumber("Cargo Min Output", kMinOutput);*/
 	}
 
 	@SuppressWarnings("Duplicates")

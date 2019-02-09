@@ -7,12 +7,14 @@
 
 package org.robockets.deepspace;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.robockets.deepspace.climber.MoveArms;
 import org.robockets.deepspace.climber.ExtendPistons;
 import org.robockets.deepspace.climber.MoveBottomWheels;
 import org.robockets.deepspace.climber.RetractPistons;
+import org.robockets.deepspace.hatch.SetHatch;
 import org.robockets.deepspace.misccommands.ToggleCompressor;
 
 /**
@@ -32,9 +34,14 @@ public class OI {
 
 	public OI() {
 		//aButton.whileHeld(new MoveArms());
-		bButton.whenPressed(new RetractPistons());
+		/*bButton.whenPressed(new RetractPistons());
 		xButton.whenPressed(new ExtendPistons());
-		yButton.whenPressed(new ToggleCompressor());
+		yButton.whenPressed(new ToggleCompressor());*/
+		aButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse));
+		bButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kReverse));
+		xButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kForward));
+		yButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward));
+		rightBumper.whenPressed(new ToggleCompressor());
 
 		/*leftBumper.whileHeld(new MoveArms(-1.0));
 		rightBumper.whileHeld(new MoveArms(1.0));*/

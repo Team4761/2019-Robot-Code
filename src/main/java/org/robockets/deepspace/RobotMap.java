@@ -55,8 +55,8 @@ public class RobotMap {
 
 	// Hatch
 
-	public static DoubleSolenoid outerPusher = new DoubleSolenoid(2,3);
-	public static DoubleSolenoid middlePusher = new DoubleSolenoid(0, 1);
+	public static DoubleSolenoid outerPusher = new DoubleSolenoid(0,1);
+	public static DoubleSolenoid middlePusher = new DoubleSolenoid(2, 3);
 
 	// Cargo
 

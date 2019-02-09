@@ -45,9 +45,9 @@ public class Drivetrain extends Subsystem {
 		gyroPIDController.setAbsoluteTolerance(5);
 		gyroPIDController.setOutputRange(-1.0, 1.0);
 
-		SmartDashboard.putData(leftPodPIDController);
+		/*SmartDashboard.putData(leftPodPIDController);
 		SmartDashboard.putData(rightPodPIDController);
-		SmartDashboard.putData(gyroPIDController);
+		SmartDashboard.putData(gyroPIDController);*/
 	}
 
 	public void initDefaultCommand() {

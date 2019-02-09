@@ -19,8 +19,10 @@ public class Climber extends Subsystem {
 
 	public final double TURN_RADIUS = 1.0; // In inches
 
+	public final double TICKS_PER_DEG = 1.0/1.538;
 
 	public Climber() {
+
 		leftClimberPIDController = RobotMap.leftClimber.getPIDController();
 		rightClimberPIDController = RobotMap.rightClimber.getPIDController();
 
@@ -99,6 +101,9 @@ public class Climber extends Subsystem {
 		double max = SmartDashboard.getNumber("Max Output", 0);
 		double min = SmartDashboard.getNumber("Min Output", 0);
 
+		SmartDashboard.putNumber("Left Velocity", RobotMap.leftClimberEncoder.getVelocity());
+		SmartDashboard.putNumber("Right Velocity", RobotMap.rightClimberEncoder.getVelocity());
+
 		// if PID coefficients on SmartDashboard have changed, write new values to controller
 		if ((leftP != leftKP)) {
 			leftClimberPIDController.setP(leftP);
@@ -119,7 +124,7 @@ public class Climber extends Subsystem {
 		}
 		
 		if (leftSp != leftSetPoint) {
-			leftClimberPIDController.setReference(leftSp, ControlType.kVelocity);
+			leftClimberPIDController.setReference(leftSp*TICKS_PER_DEG, ControlType.kVelocity);
 			leftSetPoint = leftSp;
 		}
 		
@@ -136,7 +141,7 @@ public class Climber extends Subsystem {
 		//if((rightIz != rightKIz)) { rightClimberPIDController.setIZone(rightIz); rightKIz = rightIz; }
 		if((rightFf != rightKFF)) { rightClimberPIDController.setFF(rightFf); rightKFF = rightFf; }
 		if (rightSp != rightSetPoint) {
-			rightClimberPIDController.setReference(rightSp, ControlType.kVelocity);
+			rightClimberPIDController.setReference(rightSp*TICKS_PER_DEG, ControlType.kVelocity);
 			rightSetPoint = rightSp;
 		}
 		if((max != kMaxOutput) || (min != kMinOutput)) {
