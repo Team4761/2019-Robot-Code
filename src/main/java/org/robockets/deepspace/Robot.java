@@ -151,8 +151,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     ///joyride.start();
-    //moveArms.start();
-    pressureManager.start();
+    moveArms.start();
+    //pressureManager.start();
   }
 
   /**

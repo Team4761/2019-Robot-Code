@@ -26,7 +26,8 @@ public class Climber extends Subsystem {
 		leftClimberPIDController = RobotMap.leftClimber.getPIDController();
 		rightClimberPIDController = RobotMap.rightClimber.getPIDController();
 
-		leftKP = 0.0005;
+		//leftKP = 0.0005;
+		leftKP = 0;
 		leftKI = 0;
 		leftKD = 0;
 		leftKIz = 0;
