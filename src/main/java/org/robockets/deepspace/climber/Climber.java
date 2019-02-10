@@ -26,7 +26,7 @@ public class Climber extends Subsystem {
 		leftClimberPIDController = RobotMap.leftClimber.getPIDController();
 		rightClimberPIDController = RobotMap.rightClimber.getPIDController();
 
-		leftKP = 0;
+		leftKP = 0.0005;
 		leftKI = 0;
 		leftKD = 0;
 		leftKIz = 0;
@@ -194,5 +194,13 @@ public class Climber extends Subsystem {
 
 	public void stopPistons() {
 		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kOff);
+	}
+
+	public boolean isLeftLimitPressed() {
+		return RobotMap.leftLimitSwitch.get();
+	}
+
+	public boolean isRightLimitPressed() {
+		return RobotMap.rightLimitSwitch.get();
 	}
 }

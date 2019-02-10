@@ -53,6 +53,9 @@ public class RobotMap {
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(4, 5);
 
+	public static DigitalInput leftLimitSwitch = new DigitalInput(1);
+	public static DigitalInput rightLimitSwitch = new DigitalInput(2);
+
 	// Hatch
 
 	public static DoubleSolenoid outerPusher = new DoubleSolenoid(0,1);
@@ -71,4 +74,6 @@ public class RobotMap {
 
 	// Misc
 	public static Compressor compressor = new Compressor();
+	public static AnalogInput pressure1 = new AnalogInput(0);
+	public static AnalogInput pressure2 = new AnalogInput(1);
 }

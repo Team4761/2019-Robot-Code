@@ -10,6 +10,9 @@ public class MoveArmsFixed extends Command {
 
 	private double targetPos = 0; // This is about when the front wheels touch the ground
 
+	private boolean isLeftDisabled = false;
+	private boolean isRightDisabled = false;
+
 	public MoveArmsFixed(double speed, double target) {
 		requires(Robot.climber);
 		targetVerticalSpeed = speed;
@@ -30,10 +33,20 @@ public class MoveArmsFixed extends Command {
 
 		Robot.climber.setLeftSpeed(angularSpeed);
 		Robot.climber.setRightSpeed(angularSpeed);
+
+		if (Robot.climber.isLeftLimitPressed()) {
+			Robot.climber.disableLeftPID();
+			isLeftDisabled = true;
+		}
+
+		if (Robot.climber.isRightLimitPressed()) {
+			Robot.climber.disableRightPID();
+			isRightDisabled = true;
+		}
 	}
 
 	protected boolean isFinished() {
-		return RobotMap.leftClimberEncoder.getPosition() >= targetPos;
+		return (RobotMap.leftClimberEncoder.getPosition() >= targetPos)||(isLeftDisabled&&isRightDisabled);
 	}
 
 	protected void end() {

@@ -21,6 +21,7 @@ import org.robockets.deepspace.climber.StopPID;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
+import org.robockets.deepspace.hatch.PressureManager;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
 
   private static Command joyride;
   private static Command moveArms;
+  private static Command pressureManager;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -55,6 +57,7 @@ public class Robot extends TimedRobot {
 
     joyride = new Joyride();
     moveArms = new MoveArms();
+    pressureManager = new PressureManager();
 
     m_oi = new OI();
 
@@ -68,6 +71,7 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData(RobotMap.climberSolenoids);
     //SmartDashboard.putData(new MoveArms(1));
     //SmartDashboard.putData(new RetractPistons());
+    SmartDashboard.putData(moveArms);
   }
 
   /**
@@ -82,6 +86,10 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SmartDashboard.putNumber("Left Climber Ticks", RobotMap.leftClimberEncoder.getPosition()*climber.TICKS_PER_DEG);
     SmartDashboard.putNumber("Right Climber Ticks", RobotMap.rightClimberEncoder.getPosition()*climber.TICKS_PER_DEG);
+
+
+    SmartDashboard.putNumber("Pressure 1", (RobotMap.pressure1.getValue()-500)/10.0);
+    SmartDashboard.putNumber("Pressure 2", (RobotMap.pressure2.getValue()-428)/32.0);
   }
 
   /**
@@ -142,8 +150,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    joyride.start();
+    ///joyride.start();
     //moveArms.start();
+    pressureManager.start();
   }
 
   /**

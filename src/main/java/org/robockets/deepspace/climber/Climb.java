@@ -1,6 +1,7 @@
 package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.robockets.deepspace.Robot;
 import org.robockets.deepspace.drivetrain.DriveStraight;
 import org.robockets.deepspace.drivetrain.DriveTimed;
 
