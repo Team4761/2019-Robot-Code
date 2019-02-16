@@ -9,12 +9,12 @@ public class PressureManager extends Command {
 	}
 
 	protected void initialize() {
-		//RobotMap.compressor.stop();
+		RobotMap.compressor.stop();
 	}
 
 	boolean wasMax = false;
 	protected void execute() {
-		double pressure = (RobotMap.pressure1.getValue()-500)/10.0;
+		/*double pressure = (RobotMap.pressure1.getValue()-500)/10.0;
 
 		if (pressure > 30) {
 			wasMax = true;
@@ -25,7 +25,7 @@ public class PressureManager extends Command {
 			if (!RobotMap.compressor.enabled() && pressure < 20 && wasMax) {
 				RobotMap.compressor.start();
 			}
-		}
+		}*/
 	}
 
 	protected boolean isFinished() {

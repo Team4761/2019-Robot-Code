@@ -14,10 +14,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.cargo.Cargo;
-import org.robockets.deepspace.climber.MoveArms;
-import org.robockets.deepspace.climber.RetractPistons;
-import org.robockets.deepspace.climber.Climber;
-import org.robockets.deepspace.climber.StopPID;
+import org.robockets.deepspace.cargo.RunCargoIntake;
+import org.robockets.deepspace.climber.*;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
@@ -40,6 +38,8 @@ public class Robot extends TimedRobot {
   private static Command joyride;
   private static Command moveArms;
   private static Command pressureManager;
+  private static Command bbVelControl;
+  private static Command runCargoIntake;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -58,12 +58,15 @@ public class Robot extends TimedRobot {
     joyride = new Joyride();
     moveArms = new MoveArms();
     pressureManager = new PressureManager();
+    bbVelControl = new BBVelocityControl();
+    runCargoIntake = new RunCargoIntake();
 
     m_oi = new OI();
 
     RobotMap.leftClimber.setInverted(true);
 
     SmartDashboard.putData(new StopPID());
+    SmartDashboard.putData(new MoveArmsFixed(12, 1000000));
 
     /*SmartDashboard.putData(RobotMap.leftClimber);
     SmartDashboard.putData(RobotMap.rightClimber);*/
@@ -84,12 +87,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Left Climber Ticks", RobotMap.leftClimberEncoder.getPosition()*climber.TICKS_PER_DEG);
-    SmartDashboard.putNumber("Right Climber Ticks", RobotMap.rightClimberEncoder.getPosition()*climber.TICKS_PER_DEG);
+    SmartDashboard.putNumber("Left Climber Deg", RobotMap.leftClimberEncoder.getPosition()/climber.REV_PER_DEG);
+    SmartDashboard.putNumber("Right Climber Deg", RobotMap.rightClimberEncoder.getPosition()/climber.REV_PER_DEG);
 
 
     SmartDashboard.putNumber("Pressure 1", (RobotMap.pressure1.getValue()-500)/10.0);
     SmartDashboard.putNumber("Pressure 2", (RobotMap.pressure2.getValue()-428)/32.0);
+
+    SmartDashboard.putBoolean("Left Limit", climber.isLeftLimitPressed());
+    SmartDashboard.putBoolean("Right Limit", climber.isRightLimitPressed());
+
+    System.out.println(RobotMap.leftLimitSwitch.get());
   }
 
   /**
@@ -150,9 +158,11 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    ///joyride.start();
-    moveArms.start();
+    //joyride.start();
+    //moveArms.start();
     //pressureManager.start();
+    //bbVelControl.start();
+    //runCargoIntake.start();
   }
 
   /**

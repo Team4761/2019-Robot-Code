@@ -22,31 +22,36 @@ public class MoveArmsFixed extends Command {
 	protected void initialize() {
 		/*Robot.climber.setLeftSpeed(4); // TODO: Put an actual value here
 		Robot.climber.setRightSpeed(4);*/
+		Robot.climber.setLeftSpeed(targetVerticalSpeed);
+		Robot.climber.setRightSpeed(targetVerticalSpeed);
 	}
 
 	protected void execute() {
 
-		double theta = RobotMap.leftClimberEncoder.getPosition()/Robot.climber.TURN_RADIUS;
+		/*double theta = RobotMap.leftClimberEncoder.getPosition()/Robot.climber.TURN_RADIUS;
 		double sin = Math.sin(theta);
 
 		double angularSpeed = targetVerticalSpeed/(Robot.climber.TURN_RADIUS*sin);
 
 		Robot.climber.setLeftSpeed(angularSpeed);
-		Robot.climber.setRightSpeed(angularSpeed);
+		Robot.climber.setRightSpeed(angularSpeed);*/
 
-		if (Robot.climber.isLeftLimitPressed()) {
+
+		if (Robot.climber.isLeftLimitPressed() || RobotMap.leftClimberEncoder.getPosition() >= targetPos) {
 			Robot.climber.disableLeftPID();
 			isLeftDisabled = true;
+			System.out.println("Disable Left");
 		}
 
-		if (Robot.climber.isRightLimitPressed()) {
+		if (Robot.climber.isRightLimitPressed() || RobotMap.rightClimberEncoder.getPosition() >= targetPos) {
 			Robot.climber.disableRightPID();
 			isRightDisabled = true;
+			System.out.println("Disable Right");
 		}
 	}
 
 	protected boolean isFinished() {
-		return (RobotMap.leftClimberEncoder.getPosition() >= targetPos)||(isLeftDisabled&&isRightDisabled);
+		return isLeftDisabled&&isRightDisabled;
 	}
 
 	protected void end() {

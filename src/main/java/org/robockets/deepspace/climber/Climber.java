@@ -19,28 +19,27 @@ public class Climber extends Subsystem {
 
 	public final double TURN_RADIUS = 1.0; // In inches
 
-	public final double TICKS_PER_DEG = 1.0/1.538;
+	public final double REV_PER_DEG = 1.538;
 
 	public Climber() {
 
 		leftClimberPIDController = RobotMap.leftClimber.getPIDController();
 		rightClimberPIDController = RobotMap.rightClimber.getPIDController();
 
-		//leftKP = 0.0005;
-		leftKP = 0;
-		leftKI = 0;
+		leftKP = 0.00055;
+		leftKI = 0.00001;
 		leftKD = 0;
 		leftKIz = 0;
 		leftKFF = 0;
 		leftSetPoint = 0;
 
-		rightKP = 0;
-		rightKI = 0;
+		rightKP = 0.00055;
+		rightKI = 0.00001;
 		rightKD = 0;
 		rightKIz = 0;
 		rightKFF = 0;
 		rightSetPoint = 0;
-		
+
 		kMaxOutput = 1;
 		kMinOutput = -1;
 
@@ -58,7 +57,7 @@ public class Climber extends Subsystem {
 		rightClimberPIDController.setFF(rightKFF);
 		rightClimberPIDController.setOutputRange(kMinOutput, kMaxOutput);
 
-		SmartDashboard.putNumber("Left P Gain", leftKP);
+		/*SmartDashboard.putNumber("Left P Gain", leftKP);
 		SmartDashboard.putNumber("Left I Gain", leftKI);
 		SmartDashboard.putNumber("Left D Gain", leftKD);
 		//SmartDashboard.putNumber("I Zone", kIz);
@@ -69,15 +68,18 @@ public class Climber extends Subsystem {
 		SmartDashboard.putNumber("Right D Gain", rightKD);
 		//SmartDashboard.putNumber("I Zone", kIz);
 		SmartDashboard.putNumber("Right Feed Forward", rightKFF);
-		
+
 		SmartDashboard.putNumber("Max Output", kMaxOutput);
-		SmartDashboard.putNumber("Min Output", kMinOutput);
+		SmartDashboard.putNumber("Min Output", kMinOutput);*/
 
-		SmartDashboard.putNumber("Left SetPoint", leftSetPoint);
-		SmartDashboard.putNumber("Left Velocity", RobotMap.leftClimberEncoder.getVelocity());
+		//SmartDashboard.putNumber("Left SetPoint", leftSetPoint);
+		SmartDashboard.putNumber("Left Velocity", (RobotMap.leftClimberEncoder.getVelocity()/REV_PER_DEG)/60.0);
 
-		SmartDashboard.putNumber("Right SetPoint", rightSetPoint);
-		SmartDashboard.putNumber("Right Velocity", RobotMap.rightClimberEncoder.getVelocity());
+		//SmartDashboard.putNumber("Right SetPoint", rightSetPoint);
+		SmartDashboard.putNumber("Right Velocity", (RobotMap.rightClimberEncoder.getVelocity()/REV_PER_DEG)/60.0);
+
+		RobotMap.leftClimber.burnFlash();
+		RobotMap.rightClimber.burnFlash();
 	}
 
 	public void initDefaultCommand() {
@@ -85,7 +87,7 @@ public class Climber extends Subsystem {
 
 	@SuppressWarnings("Duplicates")
 	public void climberDashboard() {
-		double leftP = SmartDashboard.getNumber("Left P Gain", 0);
+		/*double leftP = SmartDashboard.getNumber("Left P Gain", 0);
 		double leftI = SmartDashboard.getNumber("Left I Gain", 0);
 		double leftD = SmartDashboard.getNumber("Left D Gain", 0);
 		//double leftIz = SmartDashboard.getNumber("Left I Zone", 0);
@@ -100,13 +102,13 @@ public class Climber extends Subsystem {
 		double rightSp = SmartDashboard.getNumber("Right SetPoint", 0);
 
 		double max = SmartDashboard.getNumber("Max Output", 0);
-		double min = SmartDashboard.getNumber("Min Output", 0);
+		double min = SmartDashboard.getNumber("Min Output", 0);*/
 
-		SmartDashboard.putNumber("Left Velocity", RobotMap.leftClimberEncoder.getVelocity());
-		SmartDashboard.putNumber("Right Velocity", RobotMap.rightClimberEncoder.getVelocity());
+		SmartDashboard.putNumber("Left Velocity", (RobotMap.leftClimberEncoder.getVelocity()/REV_PER_DEG)/60.0);
+		SmartDashboard.putNumber("Right Velocity", (RobotMap.rightClimberEncoder.getVelocity()/REV_PER_DEG)/60.0);
 
 		// if PID coefficients on SmartDashboard have changed, write new values to controller
-		if ((leftP != leftKP)) {
+		/*if ((leftP != leftKP)) {
 			leftClimberPIDController.setP(leftP);
 			leftKP = leftP;
 		}
@@ -124,13 +126,13 @@ public class Climber extends Subsystem {
 			leftKFF = leftFf;
 		}
 		
-		if (leftSp != leftSetPoint) {
-			leftClimberPIDController.setReference(leftSp*TICKS_PER_DEG, ControlType.kVelocity);
+		/*if (leftSp != leftSetPoint) {
+			leftClimberPIDController.setReference(leftSp*REV_PER_DEG*60.0, ControlType.kVelocity);
 			leftSetPoint = leftSp;
-		}
+		}*/
 		
 		
-		if ((max != kMaxOutput) || (min != kMinOutput)) {
+		/*if ((max != kMaxOutput) || (min != kMinOutput)) {
 			leftClimberPIDController.setOutputRange(min, max);
 			kMinOutput = min;
 			kMaxOutput = max;
@@ -140,24 +142,26 @@ public class Climber extends Subsystem {
 		if((rightI != rightKI)) { rightClimberPIDController.setI(rightI); rightKI = rightI; }
 		if((rightD != rightKD)) { rightClimberPIDController.setD(rightD); rightKD = rightD; }
 		//if((rightIz != rightKIz)) { rightClimberPIDController.setIZone(rightIz); rightKIz = rightIz; }
-		if((rightFf != rightKFF)) { rightClimberPIDController.setFF(rightFf); rightKFF = rightFf; }
-		if (rightSp != rightSetPoint) {
-			rightClimberPIDController.setReference(rightSp*TICKS_PER_DEG, ControlType.kVelocity);
+		if((rightFf != rightKFF)) { rightClimberPIDController.setFF(rightFf); rightKFF = rightFf; }*/
+
+		/*if (rightSp != rightSetPoint) {
+			rightClimberPIDController.setReference(rightSp*REV_PER_DEG*60.0, ControlType.kVelocity);
 			rightSetPoint = rightSp;
-		}
-		if((max != kMaxOutput) || (min != kMinOutput)) {
+		}*/
+
+		/*if((max != kMaxOutput) || (min != kMinOutput)) {
 			rightClimberPIDController.setOutputRange(min, max);
 			kMinOutput = min; kMaxOutput = max;
-		}
+		}*/
 		
 	}
 
 	public void setLeftSpeed(double speed) {
-		leftClimberPIDController.setReference(speed, ControlType.kVelocity);
+		leftClimberPIDController.setReference(speed*REV_PER_DEG*60.0, ControlType.kVelocity);
 	}
 
 	public void setRightSpeed(double speed) {
-		rightClimberPIDController.setReference(speed, ControlType.kVelocity);
+		rightClimberPIDController.setReference(speed*REV_PER_DEG*60.0, ControlType.kVelocity);
 	}
 
 	public void moveArms(double speed) {
@@ -198,10 +202,10 @@ public class Climber extends Subsystem {
 	}
 
 	public boolean isLeftLimitPressed() {
-		return RobotMap.leftLimitSwitch.get();
+		return !RobotMap.leftLimitSwitch.get();
 	}
 
 	public boolean isRightLimitPressed() {
-		return RobotMap.rightLimitSwitch.get();
+		return !RobotMap.rightLimitSwitch.get();
 	}
 }

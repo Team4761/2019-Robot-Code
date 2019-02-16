@@ -1,6 +1,7 @@
 package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.OI;
 import org.robockets.deepspace.Robot;
 
@@ -24,11 +25,11 @@ public class MoveArms extends Command {
 		double rightVal = OI.joystick.getRawAxis(3)*0.20;
 
 		if (OI.joystick.getRawButton(5)) {
-			leftVal *= -2.0;
+			leftVal *= -1.0;
 		}
 
 		if (OI.joystick.getRawButton(6)) {
-			rightVal *= -2.0;
+			rightVal *= -1.0;
 		}
 
 		Robot.climber.moveLeftArm(leftVal);

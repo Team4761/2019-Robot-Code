@@ -41,8 +41,8 @@ public class RobotMap {
 
 	// Climber
 
-	public static CANSparkMax leftClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
-	public static CANSparkMax rightClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
+	public static CANSparkMax leftClimber = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
+	public static CANSparkMax rightClimber = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushless);
 
 	public static SpeedControllerGroup climberMotors = new SpeedControllerGroup(leftClimber, rightClimber);
 
@@ -53,8 +53,8 @@ public class RobotMap {
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(4, 5);
 
-	public static DigitalInput leftLimitSwitch = new DigitalInput(1);
-	public static DigitalInput rightLimitSwitch = new DigitalInput(2);
+	public static DigitalInput leftLimitSwitch = new DigitalInput(2);
+	public static DigitalInput rightLimitSwitch = new DigitalInput(3);
 
 	// Hatch
 
@@ -64,7 +64,8 @@ public class RobotMap {
 	// Cargo
 
 	public static CANSparkMax cargoArmMotor = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
-	public static WPI_VictorSPX cargoIntakeMotor = new WPI_VictorSPX(7);
+	//public static WPI_VictorSPX cargoIntakeMotor = new WPI_VictorSPX(7);
+	public static Victor cargoIntakeMotor = new Victor(0);
 
 	public static CANEncoder cargoEncoder = cargoArmMotor.getEncoder();
 
