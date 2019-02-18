@@ -49,7 +49,7 @@ public class RobotMap {
 	public static CANEncoder leftClimberEncoder = leftClimber.getEncoder();
 	public static CANEncoder rightClimberEncoder = rightClimber.getEncoder();
 
-	public static WPI_VictorSPX climberWheels = new WPI_VictorSPX(6);
+	public static CANSparkMax climberWheels = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushed);
 
 	public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(4, 5);
 
@@ -63,9 +63,9 @@ public class RobotMap {
 
 	// Cargo
 
-	public static CANSparkMax cargoArmMotor = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushless);
+	public static CANSparkMax cargoArmMotor = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
 	//public static WPI_VictorSPX cargoIntakeMotor = new WPI_VictorSPX(7);
-	public static Victor cargoIntakeMotor = new Victor(0);
+	public static CANSparkMax cargoIntakeMotor = new CANSparkMax(8, CANSparkMaxLowLevel.MotorType.kBrushed);
 
 	public static CANEncoder cargoEncoder = cargoArmMotor.getEncoder();
 

@@ -9,6 +9,7 @@ public class DriveTimed extends Command {
 	private double time;
 
 	public DriveTimed(double speed, double time) {
+		requires(Robot.drivetrain);
 		this.speed = speed;
 		this.time = time;
 	}

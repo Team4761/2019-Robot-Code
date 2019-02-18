@@ -7,6 +7,7 @@
 
 package org.robockets.deepspace;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,12 +15,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.cargo.Cargo;
+import org.robockets.deepspace.cargo.MoveCargoArm;
 import org.robockets.deepspace.cargo.RunCargoIntake;
 import org.robockets.deepspace.climber.*;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
 import org.robockets.deepspace.hatch.PressureManager;
+import org.robockets.deepspace.subsystemlocks.Triggers;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +36,7 @@ public class Robot extends TimedRobot {
   public static Hatch hatch;
   public static Climber climber;
   public static Cargo cargo;
+  public static Triggers triggers;
   public static OI m_oi;
 
   private static Command joyride;
@@ -40,6 +44,7 @@ public class Robot extends TimedRobot {
   private static Command pressureManager;
   private static Command bbVelControl;
   private static Command runCargoIntake;
+  private static Command moveCargoArm;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -54,12 +59,13 @@ public class Robot extends TimedRobot {
     hatch = new Hatch();
     climber = new Climber();
     cargo = new Cargo();
+    triggers = new Triggers();
 
     joyride = new Joyride();
     moveArms = new MoveArms();
     pressureManager = new PressureManager();
-    bbVelControl = new BBVelocityControl();
-    runCargoIntake = new RunCargoIntake();
+    runCargoIntake = new RunCargoIntake(0.75);
+    //moveCargoArm = new MoveCargoArm();
 
     m_oi = new OI();
 
@@ -75,6 +81,13 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData(new MoveArms(1));
     //SmartDashboard.putData(new RetractPistons());
     SmartDashboard.putData(moveArms);
+    //SmartDashboard.putData(moveCargoArm);
+
+
+    System.out.println(RobotMap.leftClimber.getFirmwareString());
+    System.out.println(RobotMap.rightClimber.getFirmwareString());
+
+    //CameraServer.getInstance().startAutomaticCapture();
   }
 
   /**
@@ -97,7 +110,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Left Limit", climber.isLeftLimitPressed());
     SmartDashboard.putBoolean("Right Limit", climber.isRightLimitPressed());
 
-    System.out.println(RobotMap.leftLimitSwitch.get());
   }
 
   /**
@@ -158,11 +170,12 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    //joyride.start();
+    joyride.start();
     //moveArms.start();
     //pressureManager.start();
     //bbVelControl.start();
     //runCargoIntake.start();
+    //moveCargoArm.start();
   }
 
   /**

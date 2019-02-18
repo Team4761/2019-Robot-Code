@@ -78,6 +78,10 @@ public class Cargo extends Subsystem {
 		setpoint = position;
 	}
 
+	public void moveCargoArm(double speed) {
+		RobotMap.cargoArmMotor.set(speed);
+	}
+
 	public boolean onTarget() {
 		double currentPos = RobotMap.cargoEncoder.getPosition();
 
@@ -90,6 +94,10 @@ public class Cargo extends Subsystem {
 
 	public void setSolenoid(DoubleSolenoid.Value value) {
 		RobotMap.cargoSolenoid.set(value);
+	}
+
+	public DoubleSolenoid.Value getSolenoidValue() {
+		return RobotMap.cargoSolenoid.get();
 	}
 
 	public void moveArmMotor(double speed) {

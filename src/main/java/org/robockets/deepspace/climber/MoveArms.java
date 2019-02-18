@@ -11,6 +11,7 @@ public class MoveArms extends Command {
 
 	public MoveArms(/*double multi*/) {
 		requires(Robot.climber);
+		requires(Robot.triggers);
 		//this.multi = multi;
 	}
 

@@ -1,15 +1,19 @@
-package org.robockets.deepspace.climber;
+package org.robockets.deepspace.hatch;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;
 
-public class RetractPistons extends Command {
+public class SetOuterHatch extends Command {
 
-	public RetractPistons() {
+	private DoubleSolenoid.Value val;
+
+	public SetOuterHatch(DoubleSolenoid.Value val) {
+		this.val = val;
 	}
 
 	protected void initialize() {
-		Robot.climber.closePistons();
+		Robot.hatch.setOuterPistons(val);
 	}
 
 	protected void execute() {
@@ -20,7 +24,6 @@ public class RetractPistons extends Command {
 	}
 
 	protected void end() {
-		//Robot.climber.stopPistons();
 	}
 
 	protected void interrupted() {

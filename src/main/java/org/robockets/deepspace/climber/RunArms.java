@@ -1,14 +1,13 @@
-package org.robockets.deepspace.cargo;
+package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.robockets.deepspace.OI;
 import org.robockets.deepspace.Robot;
 
-public class RunCargoIntake extends Command {
+public class RunArms extends Command {
 
 	private double speed;
 
-	public RunCargoIntake(double speed) {
+	public RunArms(double speed) {
 		this.speed = speed;
 	}
 
@@ -16,13 +15,8 @@ public class RunCargoIntake extends Command {
 	}
 
 	protected void execute() {
-		/*double speed = OI.joystick.getRawAxis(2);
-
-		if (OI.joystick.getRawButton(5)) {
-			speed *= -1.0;
-		}*/
-
-		Robot.cargo.moveIntake(speed);
+		Robot.climber.moveLeftArm(speed);
+		Robot.climber.moveRightArm(speed);
 	}
 
 	protected boolean isFinished() {
@@ -30,7 +24,8 @@ public class RunCargoIntake extends Command {
 	}
 
 	protected void end() {
-		Robot.cargo.moveIntake(0);
+		Robot.climber.moveLeftArm(0);
+		Robot.climber.moveRightArm(0);
 	}
 
 	protected void interrupted() {

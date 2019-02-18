@@ -70,9 +70,9 @@ public class Climber extends Subsystem {
 		SmartDashboard.putNumber("Right Feed Forward", rightKFF);
 
 		SmartDashboard.putNumber("Max Output", kMaxOutput);
-		SmartDashboard.putNumber("Min Output", kMinOutput);*/
+		SmartDashboard.putNumber("Min Output", kMinOutput);
 
-		//SmartDashboard.putNumber("Left SetPoint", leftSetPoint);
+		SmartDashboard.putNumber("Left SetPoint", leftSetPoint);*/
 		SmartDashboard.putNumber("Left Velocity", (RobotMap.leftClimberEncoder.getVelocity()/REV_PER_DEG)/60.0);
 
 		//SmartDashboard.putNumber("Right SetPoint", rightSetPoint);
@@ -126,13 +126,13 @@ public class Climber extends Subsystem {
 			leftKFF = leftFf;
 		}
 		
-		/*if (leftSp != leftSetPoint) {
+		if (leftSp != leftSetPoint) {
 			leftClimberPIDController.setReference(leftSp*REV_PER_DEG*60.0, ControlType.kVelocity);
 			leftSetPoint = leftSp;
-		}*/
+		}
 		
 		
-		/*if ((max != kMaxOutput) || (min != kMinOutput)) {
+		if ((max != kMaxOutput) || (min != kMinOutput)) {
 			leftClimberPIDController.setOutputRange(min, max);
 			kMinOutput = min;
 			kMaxOutput = max;
@@ -142,14 +142,14 @@ public class Climber extends Subsystem {
 		if((rightI != rightKI)) { rightClimberPIDController.setI(rightI); rightKI = rightI; }
 		if((rightD != rightKD)) { rightClimberPIDController.setD(rightD); rightKD = rightD; }
 		//if((rightIz != rightKIz)) { rightClimberPIDController.setIZone(rightIz); rightKIz = rightIz; }
-		if((rightFf != rightKFF)) { rightClimberPIDController.setFF(rightFf); rightKFF = rightFf; }*/
+		if((rightFf != rightKFF)) { rightClimberPIDController.setFF(rightFf); rightKFF = rightFf; }
 
-		/*if (rightSp != rightSetPoint) {
+		if (rightSp != rightSetPoint) {
 			rightClimberPIDController.setReference(rightSp*REV_PER_DEG*60.0, ControlType.kVelocity);
 			rightSetPoint = rightSp;
-		}*/
+		}
 
-		/*if((max != kMaxOutput) || (min != kMinOutput)) {
+		if((max != kMaxOutput) || (min != kMinOutput)) {
 			rightClimberPIDController.setOutputRange(min, max);
 			kMinOutput = min; kMaxOutput = max;
 		}*/
@@ -187,10 +187,12 @@ public class Climber extends Subsystem {
 	// Set to current position
 	public void disableLeftPID() {
 		leftClimberPIDController.setReference(0, ControlType.kVelocity);
+		RobotMap.leftClimber.set(0);
 	}
 
 	public void disableRightPID() {
 		rightClimberPIDController.setReference(0, ControlType.kVelocity);
+		RobotMap.rightClimber.set(0);
 	}
 
 	public void moveBottomWheels(double speed) {
