@@ -57,6 +57,9 @@ public class MoveArmsFixed extends Command {
 	protected void end() {
 		Robot.climber.disableLeftPID();
 		Robot.climber.disableRightPID();
+
+		isLeftDisabled = false;
+		isRightDisabled = false;
 	}
 
 	protected void interrupted() {

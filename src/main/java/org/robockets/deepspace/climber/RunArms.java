@@ -1,6 +1,7 @@
 package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.robockets.deepspace.OI;
 import org.robockets.deepspace.Robot;
 
 public class RunArms extends Command {
@@ -15,8 +16,18 @@ public class RunArms extends Command {
 	}
 
 	protected void execute() {
-		Robot.climber.moveLeftArm(speed);
-		Robot.climber.moveRightArm(speed);
+		boolean isLeft = OI.button119.get();
+		boolean isRight = OI.button120.get();
+
+
+		if (isLeft) {
+			Robot.climber.moveLeftArm(speed);
+		} else if (isRight) {
+			Robot.climber.moveRightArm(speed);
+		} else {
+			Robot.climber.moveLeftArm(speed);
+			Robot.climber.moveRightArm(speed);
+		}
 	}
 
 	protected boolean isFinished() {

@@ -1,6 +1,7 @@
 package org.robockets.deepspace.cargo;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.OI;
 import org.robockets.deepspace.Robot;
 import org.robockets.deepspace.RobotMap;
@@ -19,13 +20,13 @@ public class MoveCargoArm extends Command {
 	}
 
 	protected void execute() {
-		/*double val = OI.joystick.getRawAxis(3);
+		/*double val = OI.joystick.getRawAxis(3)*0.3; // 0.1 stops it
 
 		if (OI.joystick.getRawButton(6)) {
 			val *= -1.0;
 		}
 
-		System.out.println(RobotMap.cargoEncoder.getPosition());*/
+		SmartDashboard.putNumber("Cargo Output", val);*/
 
 		Robot.cargo.moveArmMotor(speed);
 	}
