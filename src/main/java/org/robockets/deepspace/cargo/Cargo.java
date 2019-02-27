@@ -24,8 +24,8 @@ public class Cargo extends Subsystem {
 		kD = 0;
 		kIz = 0;
 		kFF = 0;
-		kMaxOutput = 1;
-		kMinOutput = -1;
+		kMaxOutput = 0.65;
+		kMinOutput = -0.65;
 		setpoint = 0;
 
 

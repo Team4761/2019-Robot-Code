@@ -182,8 +182,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    joyride.start();
-    moveArms.start();
+    //joyride.start();
+    //moveArms.start();
     //pressureManager.start();
     //bbVelControl.start();
     //runCargoIntake.start();

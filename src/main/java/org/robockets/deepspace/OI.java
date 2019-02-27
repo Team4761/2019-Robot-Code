@@ -134,8 +134,8 @@ public class OI {
 		button203.whileHeld(new RunCargoIntake(1));
 		button202.whileHeld(new RunCargoIntake(-1));
 
-		button223.whileHeld(new MoveCargoArm(0.2));
-		button222.whileHeld(new MoveCargoArm(-0.2));
+		button223.whileHeld(new MoveCargoArm(0.5));
+		button222.whileHeld(new MoveCargoArm(-0.5));
 
 		button218.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kForward));
 		button220.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kReverse));
@@ -147,8 +147,8 @@ public class OI {
 		button204.whileHeld(new RunBottomWheelsManual(0.3));
 		button221.whileHeld(new RunBottomWheelsManual(-0.3));
 
-		button208.whileHeld(new RunArms(-0.3));
-		button211.whileHeld(new RunArms(0.3));
+		button208.whileHeld(new RunArms(-0.45));
+		button211.whileHeld(new RunArms(0.45));
 
 		button205.whenPressed(new ExtendPistons());
 		button210.whenPressed(new RetractPistons());

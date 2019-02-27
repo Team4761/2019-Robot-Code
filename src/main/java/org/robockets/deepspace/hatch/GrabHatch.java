@@ -12,7 +12,7 @@ public class GrabHatch extends Command {
 
 	protected void initialize() {
 		Robot.hatch.setOuterPistons(DoubleSolenoid.Value.kForward);
-		Robot.hatch.setMiddlePiston(DoubleSolenoid.Value.kForward);
+		//Robot.hatch.setMiddlePiston(DoubleSolenoid.Value.kForward);
 	}
 
 	protected void execute() {
