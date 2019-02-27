@@ -6,30 +6,41 @@ import org.robockets.deepspace.Robot;
 
 public class Joyride extends Command {
 
-    public Joyride() {
-        requires(Robot.drivetrain);
-    }
+	private final double RAMP_FACTOR = 0.5;
 
-    protected void initialize() {
+	private double previousTranslate = 0.0;
+	private double previousRotate = 0.0;
 
-    }
+	public Joyride() {
+		requires(Robot.drivetrain);
+	}
 
-    protected void execute() {
-        double translate = OI.joystick.getRawAxis(1);
-        double rotate = -OI.joystick.getRawAxis(4)*0.6;
+	protected void initialize() {
 
-        Robot.drivetrain.driveArcade(translate, rotate);
-    }
+	}
 
-    protected boolean isFinished() {
-        return false;
-    }
+	protected void execute() {
+		double translate = OI.joystick.getRawAxis(1)*0.75;
+		double rotate = -OI.joystick.getRawAxis(4);
 
-    protected void end() {
+		translate = ((translate-previousTranslate)*RAMP_FACTOR)+previousTranslate;
+		rotate = ((rotate-previousRotate)*RAMP_FACTOR)+previousRotate;
 
-    }
+		previousTranslate = translate;
+		previousRotate = rotate;
 
-    protected void interrupted() {
-        end();
-    }
+		Robot.drivetrain.driveArcade(translate, rotate);
+	}
+
+	protected boolean isFinished() {
+		return false;
+	}
+
+	protected void end() {
+
+	}
+
+	protected void interrupted() {
+		end();
+	}
 }

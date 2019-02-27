@@ -7,13 +7,25 @@
 
 package org.robockets.deepspace;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.robockets.deepspace.cargo.Cargo;
+import org.robockets.deepspace.cargo.MoveCargoArm;
+import org.robockets.deepspace.cargo.RunCargoIntake;
+import org.robockets.deepspace.cargo.ToggleCargoDirection;
+import org.robockets.deepspace.climber.*;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
+import org.robockets.deepspace.hatch.Hatch;
+import org.robockets.deepspace.hatch.PressureManager;
+import org.robockets.deepspace.hatch.RetractHatchPistons;
+import org.robockets.deepspace.misccommands.ToggleCompressor;
+import org.robockets.deepspace.subsystemlocks.Triggers;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,11 +36,21 @@ import org.robockets.deepspace.drivetrain.Joyride;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
-
-  public static Command joyride;
-
+  public static Hatch hatch;
+  public static Climber climber;
+  public static Cargo cargo;
+  public static Triggers triggers;
   public static OI m_oi;
 
+  private static Command joyride;
+  private static Command moveArms;
+  private static Command pressureManager;
+  private static Command bbVelControl;
+  private static Command runCargoIntake;
+  private static Command moveCargoArm;
+
+  Command m_autonomousCommand;
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -37,11 +59,44 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivetrain = new Drivetrain();
+    hatch = new Hatch();
+    climber = new Climber();
+    cargo = new Cargo();
+    triggers = new Triggers();
 
     joyride = new Joyride();
+    moveArms = new MoveArms();
+    pressureManager = new PressureManager();
+    runCargoIntake = new RunCargoIntake(0.75);
+    moveCargoArm = new MoveCargoArm(0);
 
     m_oi = new OI();
-    // chooser.addOption("My Auto", new MyAutoCommand());
+
+    RobotMap.leftClimber.setInverted(true);
+
+    SmartDashboard.putData(new StopPID());
+    SmartDashboard.putData(new MoveArmsFixed(12, 1000000));
+
+    /*SmartDashboard.putData(RobotMap.leftClimber);
+    SmartDashboard.putData(RobotMap.rightClimber);*/
+    //SmartDashboard.putData(RobotMap.climberMotors);
+    //SmartDashboard.putData(RobotMap.climberSolenoids);
+    //SmartDashboard.putData(new MoveArms(1));
+    //SmartDashboard.putData(new RetractPistons());
+    SmartDashboard.putData(moveArms);
+    SmartDashboard.putData(moveCargoArm);
+    SmartDashboard.putData(new ToggleCompressor());
+
+
+    System.out.println(RobotMap.leftClimber.getFirmwareString());
+    System.out.println(RobotMap.rightClimber.getFirmwareString());
+
+    SmartDashboard.putData(new ExtendPistons());
+    SmartDashboard.putData(new RetractPistons());
+
+    //CameraServer.getInstance().startAutomaticCapture();
+
+    //SmartDashboard.putNumber("LED Val", 0);
   }
 
   /**
@@ -54,6 +109,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Left Climber Deg", RobotMap.leftClimberEncoder.getPosition()/climber.REV_PER_DEG);
+    SmartDashboard.putNumber("Right Climber Deg", RobotMap.rightClimberEncoder.getPosition()/climber.REV_PER_DEG);
+
+
+    SmartDashboard.putNumber("Pressure 1", (RobotMap.pressure1.getValue()-500)/10.0);
+    SmartDashboard.putNumber("Pressure 2", (RobotMap.pressure2.getValue()-428)/32.0);
+
+    SmartDashboard.putBoolean("Left Limit", climber.isLeftLimitPressed());
+    SmartDashboard.putBoolean("Right Limit", climber.isRightLimitPressed());
+
+    SmartDashboard.putNumber("Raw Cargo", RobotMap.cargoEncoder.getPosition());
+
+    //RobotMap.ledStrip.set(SmartDashboard.getNumber("LED Val", 0));
   }
 
   /**
@@ -108,8 +176,15 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-
-    joyride.start();
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
+    //joyride.start();
+    //moveArms.start();
+    //pressureManager.start();
+    //bbVelControl.start();
+    //runCargoIntake.start();
+    //moveCargoArm.start();
   }
 
   /**
@@ -118,6 +193,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    //climber.climberDashboard();
+    cargo.cargoPeriodic();
   }
 
   /**
