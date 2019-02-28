@@ -84,9 +84,9 @@ public class Cargo extends Subsystem {
 	public void initDefaultCommand() {
 	}
 
-	public void setArmPosition(double position) {
-		m_pidController.setReference(position, ControlType.kPosition);
-		setpoint = position;
+	public void setArmPosition(double angle) {
+		m_pidController.setReference(angle*REV_PER_DEGREE, ControlType.kPosition);
+		setpoint = angle*REV_PER_DEGREE;
 	}
 
 	public void moveCargoArm(double speed) {
@@ -94,13 +94,13 @@ public class Cargo extends Subsystem {
 	}
 
 	public boolean onTarget() {
-		double currentPos = RobotMap.cargoEncoder.getPosition();
+		double currentPos = RobotMap.cargoEncoder.getPosition()/REV_PER_DEGREE;
 
 		return (currentPos>=setpoint-ABSOLUTE_TOLERANCE&&currentPos<=setpoint+ABSOLUTE_TOLERANCE);
 	}
 
 	public void disablePID() {
-		m_pidController.setReference(RobotMap.cargoEncoder.getPosition(), ControlType.kPosition);
+		m_pidController.setReference(RobotMap.cargoEncoder.getPosition()/REV_PER_DEGREE, ControlType.kPosition);
 	}
 
 	public void setSolenoid(DoubleSolenoid.Value value) {

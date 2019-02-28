@@ -10,7 +10,7 @@ public class Climb extends CommandGroup {
 
 	public Climb() {
 		addParallel(new ExtendPistons());
-		addParallel(new MoveBottomWheels(0.3, 10, 3));
+		addParallel(new MoveBottomWheels(1, 10, 3));
 		addSequential(new MoveArmsFixed(13, 10000)); // This goes until it is almost cleared
 	}
 }
