@@ -1,11 +1,4 @@
-package org.robockets.deepspace.vision; /**
- * Dear: Jake Backer
- * 		INTELLIJ REFUSES TO TELL ME WHAT THE F*CK IS WRONG WITH MY CODE LIKE IT NORMALLY WOULD!!
- * 		SORRY IF THERE ARE AN ACCES AMOUNT OF SQUIGGLY LINES!!!!!!!!!!!!
- * 		I DUNNO WHAT TO DO TO FIX
- * 															Sincerely:
- * 															Gian Sabia
- */
+package org.robockets.deepspace.vision;
 
 import java.io.File;
 import java.io.FileWriter;
