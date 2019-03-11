@@ -184,6 +184,18 @@ public class Climber extends Subsystem {
 		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kReverse);
 	}
 
+	public void openExtraSolenoid() {
+		RobotMap.stupidSolenoid.set(DoubleSolenoid.Value.kForward);
+	}
+
+	public void closeExtraSolenoid() {
+		RobotMap.stupidSolenoid.set(DoubleSolenoid.Value.kReverse);
+	}
+
+	public void setExtraSolenoid(DoubleSolenoid.Value value) {
+		RobotMap.stupidSolenoid.set(value);
+	}
+
 	// Set to current position
 	public void disableLeftPID() {
 		leftClimberPIDController.setReference(0, ControlType.kVelocity);

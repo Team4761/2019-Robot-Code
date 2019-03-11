@@ -51,15 +51,19 @@ public class RobotMap {
 
     public static CANSparkMax climberWheels = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushed);
 
-    public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(4, 5);
+    public static DoubleSolenoid climberSolenoids = new DoubleSolenoid(1,4, 5);
+
+    public static DoubleSolenoid stupidSolenoid = new DoubleSolenoid(0, 7,6);
 
     public static DigitalInput leftLimitSwitch = new DigitalInput(2);
     public static DigitalInput rightLimitSwitch = new DigitalInput(3);
 
     // Hatch
 
-    public static DoubleSolenoid outerPusher = new DoubleSolenoid(0,1);
-    public static DoubleSolenoid middlePusher = new DoubleSolenoid(2, 3);
+    public static DoubleSolenoid outerPusher = new DoubleSolenoid(1,0,1);
+    public static DoubleSolenoid middlePusher = new DoubleSolenoid(1,2, 3);
+
+    public static DigitalInput hatchLimitSwitch = new DigitalInput(4);
 
     // Cargo
 
@@ -69,15 +73,16 @@ public class RobotMap {
 
     public static CANEncoder cargoEncoder = cargoArmMotor.getEncoder();
 
-    public static DoubleSolenoid cargoSolenoid = new DoubleSolenoid(6, 7);
+    public static DoubleSolenoid cargoSolenoid = new DoubleSolenoid(1,6, 7);
 
     public static DigitalInput cargoBreakbeam = new DigitalInput(0);
 
     // Misc
-    public static Compressor compressor = new Compressor();
+    public static Compressor compressor = new Compressor(1);
     public static AnalogInput pressure1 = new AnalogInput(0);
     public static AnalogInput pressure2 = new AnalogInput(1);
 
 
     public static Spark ledStrip = new Spark(1);
+
 }

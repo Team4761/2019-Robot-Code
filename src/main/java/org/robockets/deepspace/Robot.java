@@ -7,23 +7,20 @@
 
 package org.robockets.deepspace;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.cargo.Cargo;
 import org.robockets.deepspace.cargo.MoveCargoArm;
 import org.robockets.deepspace.cargo.RunCargoIntake;
-import org.robockets.deepspace.cargo.ToggleCargoDirection;
 import org.robockets.deepspace.climber.*;
+import org.robockets.deepspace.drivetrain.DriveTimed;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
 import org.robockets.deepspace.hatch.PressureManager;
-import org.robockets.deepspace.hatch.RetractHatchPistons;
 import org.robockets.deepspace.misccommands.ToggleCompressor;
 import org.robockets.deepspace.subsystemlocks.Triggers;
 
@@ -49,8 +46,7 @@ public class Robot extends TimedRobot {
   private static Command runCargoIntake;
   private static Command moveCargoArm;
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Command startDriveStraight;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -69,6 +65,7 @@ public class Robot extends TimedRobot {
     pressureManager = new PressureManager();
     runCargoIntake = new RunCargoIntake(0.75);
     moveCargoArm = new MoveCargoArm(0);
+    startDriveStraight = new DriveTimed(0.4, 4);
 
     m_oi = new OI();
 
@@ -122,6 +119,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Raw Cargo", RobotMap.cargoEncoder.getPosition());
 
     //RobotMap.ledStrip.set(SmartDashboard.getNumber("LED Val", 0));
+
+    SmartDashboard.putBoolean("Has Hatch?", !RobotMap.hatchLimitSwitch.get());
   }
 
   /**
@@ -160,6 +159,7 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
+    //startDriveStraight.start();
   }
 
   /**
@@ -176,8 +176,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (startDriveStraight != null) {
+      startDriveStraight.cancel();
     }
     //joyride.start();
     //moveArms.start();

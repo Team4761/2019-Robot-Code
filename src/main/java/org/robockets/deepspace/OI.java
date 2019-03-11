@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.robockets.deepspace.cargo.*;
 import org.robockets.deepspace.climber.*;
+import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.*;
 import org.robockets.deepspace.misccommands.ToggleCompressor;
 
@@ -42,7 +43,7 @@ public class OI {
 	public static JoystickButton button102 = new JoystickButton(buttonBoard1, 2); // Cargo Low
 	public static JoystickButton button103 = new JoystickButton(buttonBoard1, 3); // Hatch all out
 	public static JoystickButton button104 = new JoystickButton(buttonBoard1, 4); // Cargo shoot
-	public static JoystickButton button105 = new JoystickButton(buttonBoard1, 5); // Climb
+	public static JoystickButton button105 = new JoystickButton(buttonBoard1, 5); // Cargo Wheels Forward
 	public static JoystickButton button106 = new JoystickButton(buttonBoard1, 6); // Cargo Intake
 	public static JoystickButton button107 = new JoystickButton(buttonBoard1, 7);
 	public static JoystickButton button108 = new JoystickButton(buttonBoard1, 8); // Cargo Ship
@@ -68,7 +69,7 @@ public class OI {
 	public static JoystickButton button201 = new JoystickButton(buttonBoard2, 1);
 	public static JoystickButton button202 = new JoystickButton(buttonBoard2, 2); // Intake Backward
 	public static JoystickButton button203 = new JoystickButton(buttonBoard2, 3); // Intake Forward
-	public static JoystickButton button204 = new JoystickButton(buttonBoard2, 4); // Climbing Wheels Forward
+	public static JoystickButton button204 = new JoystickButton(buttonBoard2, 4); // Climbing Wheels Forward > Other Piston Forward
 	public static JoystickButton button205 = new JoystickButton(buttonBoard2, 5); // Climbing Piston Down
 	public static JoystickButton button206 = new JoystickButton(buttonBoard2, 6);
 	public static JoystickButton button207 = new JoystickButton(buttonBoard2, 7); // Inner Pistons Close
@@ -85,7 +86,7 @@ public class OI {
 	public static JoystickButton button218 = new JoystickButton(buttonBoard2, 18); // Cargo Piston Up
 	public static JoystickButton button219 = new JoystickButton(buttonBoard2, 19);
 	public static JoystickButton button220 = new JoystickButton(buttonBoard2, 20); // Cargo Piston Down
-	public static JoystickButton button221 = new JoystickButton(buttonBoard2, 21); // Climbing Wheels Backward
+	public static JoystickButton button221 = new JoystickButton(buttonBoard2, 21); // Climbing Wheels Backward > Other Piston Backward
 	public static JoystickButton button222 = new JoystickButton(buttonBoard2, 22); // Arm Backward
 	public static JoystickButton button223 = new JoystickButton(buttonBoard2, 23); // Arm Forward
 
@@ -95,10 +96,10 @@ public class OI {
 		/*bButton.whenPressed(new RetractPistons());
 		xButton.whenPressed(new ExtendPistons());*/
 		//yButton.whenPressed(new ToggleCompressor());
-		aButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kReverse));
-		bButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kReverse));
-		xButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kForward));
-		yButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward));
+		aButton.whenPressed(new EjectHatch());
+		//bButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kReverse));
+		//xButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kForward));
+		yButton.whenPressed(new Joyride());
 		//rightBumper.whenPressed(new ToggleCompressor());
 		//leftBumper.whileHeld(new RunBottomWheelsManual(0.75));
 		//leftBumper.whenPressed(new Climb());
@@ -133,21 +134,21 @@ public class OI {
 		button203.whileHeld(new RunCargoIntake(1));
 		button202.whileHeld(new RunCargoIntake(-1));
 
-		button223.whileHeld(new MoveCargoArm(0.5));
-		button222.whileHeld(new MoveCargoArm(-0.5));
+		button223.whileHeld(new MoveCargoArm(0.45));
+		button222.whileHeld(new MoveCargoArm(-0.45));
 
 		button218.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kForward));
 		button220.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kReverse));
 
 
 		// Climber
-		button105.whileHeld(new Climb());
+		button105.whileHeld(new RunBottomWheelsManual(-.6));
 
-		button204.whileHeld(new RunBottomWheelsManual(0.3));
-		button221.whileHeld(new RunBottomWheelsManual(-0.3));
+		button204.whenPressed(new SetExtraSolenoid(DoubleSolenoid.Value.kReverse));
+		button221.whenPressed(new SetExtraSolenoid(DoubleSolenoid.Value.kForward));
 
-		button208.whileHeld(new RunArms(-0.45));
-		button211.whileHeld(new RunArms(0.45));
+		button208.whileHeld(new RunArms(-0.55));
+		button211.whileHeld(new RunArms(0.55));
 
 		button205.whenPressed(new ExtendPistons());
 		button210.whenPressed(new RetractPistons());
