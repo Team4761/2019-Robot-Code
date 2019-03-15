@@ -6,17 +6,17 @@ import org.robockets.deepspace.Robot;
 
 public class SetHatch extends Command {
 
-	private DoubleSolenoid.Value outerVal;
-	private DoubleSolenoid.Value innerVal;
+	private DoubleSolenoid.Value setPusherVal;
+	private DoubleSolenoid.Value setFingerVal;
 
-	public SetHatch(DoubleSolenoid.Value outerVal, DoubleSolenoid.Value innerVal) {
-		this.outerVal = outerVal;
-		this.innerVal = innerVal;
+	public SetHatch(DoubleSolenoid.Value setPusherVal, DoubleSolenoid.Value setFingerVal) {
+		this.setPusherVal = setPusherVal;
+		this.setFingerVal = setFingerVal;
 	}
 
 	protected void initialize() {
-		Robot.hatch.setOuterPistons(outerVal);
-		Robot.hatch.setMiddlePiston(innerVal);
+		Robot.hatch.setPusher(setPusherVal);
+		Robot.hatch.setFinger(setFingerVal);
 	}
 
 	protected void execute() {

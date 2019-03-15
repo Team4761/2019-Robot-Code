@@ -9,7 +9,7 @@ import org.robockets.deepspace.RobotMap;
 
 public class Cargo extends Subsystem {
 
-	private final double REV_PER_DEGREE = 0.2062309365731698;
+	private final double REV_PER_DEGREE = 180.0/179.20675659179688;
 	private final double ABSOLUTE_TOLERANCE = 5.0; // Degrees
 
 	private CANPIDController m_pidController;
@@ -19,13 +19,13 @@ public class Cargo extends Subsystem {
 	public Cargo() {
 		m_pidController = RobotMap.cargoArmMotor.getPIDController();
 
-		kP = 0;
+		kP = 0.018;
 		kI = 0;
-		kD = 0;
+		kD = 0.00001;
 		kIz = 0;
 		kFF = 0;
-		kMaxOutput = 0.65;
-		kMinOutput = -0.65;
+		kMaxOutput = 1;
+		kMinOutput = -1;
 		setpoint = 0;
 
 

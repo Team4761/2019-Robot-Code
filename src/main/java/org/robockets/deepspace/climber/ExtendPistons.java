@@ -10,7 +10,8 @@ public class ExtendPistons extends Command {
 	}
 
 	protected void initialize() {
-		Robot.climber.extendPistons();
+		Robot.climber.extendRightSolenoid();
+		Robot.climber.extendLeftSolenoid();
 	}
 
 	protected void execute() {

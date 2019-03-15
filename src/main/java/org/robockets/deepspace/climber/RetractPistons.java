@@ -9,7 +9,8 @@ public class RetractPistons extends Command {
 	}
 
 	protected void initialize() {
-		Robot.climber.closePistons();
+		Robot.climber.closeRightSolenoid();
+		Robot.climber.closeLeftSolenoid();
 	}
 
 	protected void execute() {

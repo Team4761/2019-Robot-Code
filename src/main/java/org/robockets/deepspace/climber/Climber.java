@@ -3,12 +3,9 @@ package org.robockets.deepspace.climber;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.RobotMap;
-import org.robockets.deepspace.pidsources.ClimberPIDSource;
-import org.robockets.deepspace.pidsources.DoubleEncoderPIDSource;
 
 public class Climber extends Subsystem {
 
@@ -176,24 +173,24 @@ public class Climber extends Subsystem {
 		RobotMap.rightClimber.set(speed);
 	}
 
-	public void extendPistons() {
-		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kForward);
+	public void extendRightSolenoid() {
+		RobotMap.rightClimberSolenoids.set(DoubleSolenoid.Value.kForward);
 	}
 
-	public void closePistons() {
-		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kReverse);
+	public void closeRightSolenoid() {
+		RobotMap.rightClimberSolenoids.set(DoubleSolenoid.Value.kReverse);
 	}
 
-	public void openExtraSolenoid() {
-		RobotMap.stupidSolenoid.set(DoubleSolenoid.Value.kForward);
+	public void extendLeftSolenoid() {
+		RobotMap.leftClimberSolenoids.set(DoubleSolenoid.Value.kForward);
 	}
 
-	public void closeExtraSolenoid() {
-		RobotMap.stupidSolenoid.set(DoubleSolenoid.Value.kReverse);
+	public void closeLeftSolenoid() {
+		RobotMap.leftClimberSolenoids.set(DoubleSolenoid.Value.kReverse);
 	}
 
-	public void setExtraSolenoid(DoubleSolenoid.Value value) {
-		RobotMap.stupidSolenoid.set(value);
+	public void setLeftSolenoid(DoubleSolenoid.Value value) {
+		RobotMap.leftClimberSolenoids.set(value);
 	}
 
 	// Set to current position
@@ -212,7 +209,7 @@ public class Climber extends Subsystem {
 	}
 
 	public void stopPistons() {
-		RobotMap.climberSolenoids.set(DoubleSolenoid.Value.kOff);
+		RobotMap.rightClimberSolenoids.set(DoubleSolenoid.Value.kOff);
 	}
 
 	public boolean isLeftLimitPressed() {

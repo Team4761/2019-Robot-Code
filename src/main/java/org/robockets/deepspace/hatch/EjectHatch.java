@@ -1,31 +1,16 @@
 package org.robockets.deepspace.hatch;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Command;
-import org.robockets.deepspace.Robot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class EjectHatch extends Command {
+public class EjectHatch extends CommandGroup {
 
 	public EjectHatch() {
-		requires(Robot.hatch);
-	}
-
-	protected void initialize() {
-		Robot.hatch.setMiddlePiston(DoubleSolenoid.Value.kForward);
-		Robot.hatch.setOuterPistons(DoubleSolenoid.Value.kReverse);
-	}
-
-	protected void execute() {
-	}
-
-	protected boolean isFinished() {
-		return true;
-	}
-
-	protected void end() {
-	}
-
-	protected void interrupted() {
-		end();
+		addSequential(new SetFinger(DoubleSolenoid.Value.kReverse));
+		addSequential(new WaitCommand(0.1));
+		addSequential(new SetPusher(DoubleSolenoid.Value.kForward));
+		addSequential(new WaitCommand(0.2));
+		addSequential(new SetPusher(DoubleSolenoid.Value.kReverse));
 	}
 }

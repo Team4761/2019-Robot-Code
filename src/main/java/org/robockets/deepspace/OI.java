@@ -113,16 +113,16 @@ public class OI {
 		rightBumper.whileHeld(new MoveArms(1.0));*/
 
 		// Hatch
-		button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
-		button110.whenPressed(new RetractHatchPistons());
-		button111.whenPressed(new EjectHatch());
-		button112.whenPressed(new GrabHatch());
+		//button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
+		button110.whenPressed(new EjectHatch());
+		button111.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
+		button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
 
-		button212.whenPressed(new SetInnerHatch(DoubleSolenoid.Value.kForward));
-		button207.whenPressed(new SetInnerHatch(DoubleSolenoid.Value.kReverse));
+		button212.whenPressed(new SetPusher(DoubleSolenoid.Value.kForward));
+		button207.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
 
-		button213.whenPressed(new SetOuterHatch(DoubleSolenoid.Value.kForward));
-		button209.whenPressed(new SetOuterHatch(DoubleSolenoid.Value.kReverse));
+		button213.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
+		button209.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
 
 		// Cargo
 		button106.whileHeld(new RunCargoIntake(1));
@@ -131,11 +131,11 @@ public class OI {
 		button108.whenPressed(new SetCargoPos(CargoPos.CARGO));
 		button122.whenPressed(new SetCargoPos(CargoPos.PICKUP));
 
-		button203.whileHeld(new RunCargoIntake(1));
-		button202.whileHeld(new RunCargoIntake(-1));
+		button203.whileHeld(new RunCargoIntake(0.5));
+		button202.whileHeld(new RunCargoIntake(-0.5));
 
-		button223.whileHeld(new MoveCargoArm(0.45));
-		button222.whileHeld(new MoveCargoArm(-0.45));
+		button223.whileHeld(new MoveCargoArm(0.6));
+		button222.whileHeld(new MoveCargoArm(-0.6));
 
 		button218.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kForward));
 		button220.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kReverse));
@@ -144,8 +144,8 @@ public class OI {
 		// Climber
 		button105.whileHeld(new RunBottomWheelsManual(-.6));
 
-		button204.whenPressed(new SetExtraSolenoid(DoubleSolenoid.Value.kReverse));
-		button221.whenPressed(new SetExtraSolenoid(DoubleSolenoid.Value.kForward));
+		button204.whenPressed(new SetLeftSolenoid(DoubleSolenoid.Value.kReverse));
+		button221.whenPressed(new SetLeftSolenoid(DoubleSolenoid.Value.kForward));
 
 		button208.whileHeld(new RunArms(-0.55));
 		button211.whileHeld(new RunArms(0.55));

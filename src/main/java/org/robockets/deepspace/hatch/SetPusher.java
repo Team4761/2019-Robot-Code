@@ -4,15 +4,16 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;
 
-public class RetractHatchPistons extends Command {
+public class SetPusher extends Command {
 
-	public RetractHatchPistons() {
-		requires(Robot.hatch);
+	private DoubleSolenoid.Value val;
+
+	public SetPusher(DoubleSolenoid.Value val) {
+		this.val = val;
 	}
 
 	protected void initialize() {
-		Robot.hatch.setMiddlePiston(DoubleSolenoid.Value.kReverse);
-		Robot.hatch.setOuterPistons(DoubleSolenoid.Value.kReverse);
+		Robot.hatch.setPusher(val);
 	}
 
 	protected void execute() {

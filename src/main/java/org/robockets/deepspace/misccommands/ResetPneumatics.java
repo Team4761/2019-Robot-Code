@@ -10,9 +10,9 @@ public class ResetPneumatics extends Command {
 	}
 
 	protected void initialize() {
-		Robot.climber.closePistons();
-		Robot.hatch.setMiddlePiston(DoubleSolenoid.Value.kReverse);
-		Robot.hatch.setOuterPistons(DoubleSolenoid.Value.kReverse);
+		Robot.climber.closeRightSolenoid();
+		Robot.hatch.setPusher(DoubleSolenoid.Value.kReverse);
+		Robot.hatch.setFinger(DoubleSolenoid.Value.kReverse);
 		Robot.cargo.setSolenoid(DoubleSolenoid.Value.kReverse);
 	}
 

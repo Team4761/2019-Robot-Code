@@ -16,7 +16,7 @@ public class MoveArms extends Command {
 	}
 
 	protected void initialize() {
-		//Robot.climber.extendPistons();
+		//Robot.climber.extendRightSolenoid();
 		//setTimeout(1); // For now... This will eventually be based on encoders
 	}
 
@@ -44,7 +44,7 @@ public class MoveArms extends Command {
 
 	protected void end() {
 		//Robot.climber.moveArms(0);
-		//Robot.climber.closePistons();
+		//Robot.climber.closeRightSolenoid();
 		//Robot.climber.stopPistons();
 	}
 

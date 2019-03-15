@@ -1,18 +1,19 @@
-package org.robockets.deepspace.hatch;
+package org.robockets.deepspace.climber;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;
 
-public class GrabHatch extends Command {
+public class SetLeftSolenoid extends Command {
 
-	public GrabHatch() {
-		requires(Robot.hatch);
+	private DoubleSolenoid.Value value;
+
+	public SetLeftSolenoid(DoubleSolenoid.Value direction) {
+		value = direction;
 	}
 
 	protected void initialize() {
-		Robot.hatch.setOuterPistons(DoubleSolenoid.Value.kForward);
-		//Robot.hatch.setMiddlePiston(DoubleSolenoid.Value.kForward);
+		Robot.climber.setLeftSolenoid(value);
 	}
 
 	protected void execute() {

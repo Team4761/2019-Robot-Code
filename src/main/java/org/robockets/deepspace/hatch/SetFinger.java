@@ -1,19 +1,19 @@
-package org.robockets.deepspace.climber;
+package org.robockets.deepspace.hatch;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.Robot;
 
-public class SetExtraSolenoid extends Command {
+public class SetFinger extends Command {
 
-	private DoubleSolenoid.Value value;
+	private DoubleSolenoid.Value val;
 
-	public SetExtraSolenoid(DoubleSolenoid.Value direction) {
-		value = direction;
+	public SetFinger(DoubleSolenoid.Value val) {
+		this.val = val;
 	}
 
 	protected void initialize() {
-		Robot.climber.setExtraSolenoid(value);
+		Robot.hatch.setFinger(val);
 	}
 
 	protected void execute() {
