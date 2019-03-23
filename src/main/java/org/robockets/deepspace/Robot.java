@@ -80,16 +80,16 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData(RobotMap.rightClimberSolenoids);
     //SmartDashboard.putData(new MoveArms(1));
     //SmartDashboard.putData(new RetractPistons());
-    SmartDashboard.putData(moveArms);
-    SmartDashboard.putData(moveCargoArm);
+    //SmartDashboard.putData(moveArms);
+    //SmartDashboard.putData(moveCargoArm);
     SmartDashboard.putData(new ToggleCompressor());
 
 
     System.out.println(RobotMap.leftClimber.getFirmwareString());
     System.out.println(RobotMap.rightClimber.getFirmwareString());
 
-    SmartDashboard.putData(new ExtendPistons());
-    SmartDashboard.putData(new RetractPistons());
+    //SmartDashboard.putData(new ExtendPistons());
+    //SmartDashboard.putData(new RetractPistons());
 
     //CameraServer.getInstance().startAutomaticCapture();
 
@@ -106,12 +106,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("Left Climber Deg", RobotMap.leftClimberEncoder.getPosition()/climber.REV_PER_DEG);
+    /*SmartDashboard.putNumber("Left Climber Deg", RobotMap.leftClimberEncoder.getPosition()/climber.REV_PER_DEG);
     SmartDashboard.putNumber("Right Climber Deg", RobotMap.rightClimberEncoder.getPosition()/climber.REV_PER_DEG);
 
 
     SmartDashboard.putNumber("Pressure 1", (RobotMap.pressure1.getValue()-500)/10.0);
-    SmartDashboard.putNumber("Pressure 2", (RobotMap.pressure2.getValue()-428)/32.0);
+    SmartDashboard.putNumber("Pressure 2", (RobotMap.pressure2.getValue()-428)/32.0);*/
 
     SmartDashboard.putBoolean("Left Limit", climber.isLeftLimitPressed());
     SmartDashboard.putBoolean("Right Limit", climber.isRightLimitPressed());

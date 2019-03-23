@@ -3,6 +3,7 @@ package org.robockets.deepspace.climber;
 import edu.wpi.first.wpilibj.command.Command;
 import org.robockets.deepspace.OI;
 import org.robockets.deepspace.Robot;
+import org.robockets.deepspace.RobotMap;
 
 public class RunArms extends Command {
 
@@ -19,16 +20,37 @@ public class RunArms extends Command {
 		boolean isLeft = OI.button119.get();
 		boolean isRight = OI.button120.get();
 
+		System.out.println(speed);
 
 		if (isLeft) {
-			Robot.climber.moveLeftArm(speed);
+			leftMove();
 		} else if (isRight) {
-			Robot.climber.moveRightArm(speed);
+			rightMove();
 		} else {
+			leftMove();
+			rightMove();
+		}
+	}
+
+	private void leftMove() {
+		boolean leftLimit = RobotMap.leftLimitSwitch.get();
+		if (speed < 0) {
 			Robot.climber.moveLeftArm(speed);
+		} else if (speed >0  && leftLimit) {
+			Robot.climber.moveLeftArm(speed);
+		}
+	}
+
+	private void rightMove() {
+		boolean rightLimit = RobotMap.rightLimitSwitch.get();
+		if(speed < 0) {
+			Robot.climber.moveRightArm(speed);
+		} else if (speed > 0 && rightLimit) {
 			Robot.climber.moveRightArm(speed);
 		}
 	}
+
+
 
 	protected boolean isFinished() {
 		return false;

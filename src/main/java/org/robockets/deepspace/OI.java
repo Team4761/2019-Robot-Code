@@ -107,13 +107,14 @@ public class OI {
 		//xButton.whenPressed(new ExtendPistons());
 		//bButton.whenPressed(new RetractPistons());
 		//selectButton.whileHeld(new RunBottomWheelsManual(0.3));
-		startButton.whenPressed(new ToggleCompressor());
+		//startButton.whenPressed(new ToggleCompressor());
 
 		/*leftBumper.whileHeld(new MoveArms(-1.0));
 		rightBumper.whileHeld(new MoveArms(1.0));*/
 
 		// Hatch
 		//button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
+		button103.whenPressed(new StartHatchFix());
 		button110.whenPressed(new EjectHatch());
 		button111.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
 		button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
@@ -131,11 +132,11 @@ public class OI {
 		button108.whenPressed(new SetCargoPos(CargoPos.CARGO));
 		button122.whenPressed(new SetCargoPos(CargoPos.PICKUP));
 
-		button203.whileHeld(new RunCargoIntake(0.5));
-		button202.whileHeld(new RunCargoIntake(-0.5));
+		button203.whileHeld(new RunCargoIntake(1));
+		button202.whileHeld(new RunCargoIntake(-1));
 
-		button223.whileHeld(new MoveCargoArm(0.6));
-		button222.whileHeld(new MoveCargoArm(-0.6));
+		button223.whileHeld(new MoveCargoArm(0.5));
+		button222.whileHeld(new MoveCargoArm(-0.5));
 
 		button218.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kForward));
 		button220.whenPressed(new SetCargoPiston(DoubleSolenoid.Value.kReverse));

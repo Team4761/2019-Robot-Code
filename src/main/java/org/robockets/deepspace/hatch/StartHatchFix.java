@@ -4,10 +4,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class EjectHatch extends CommandGroup {
+public class StartHatchFix extends CommandGroup {
 
-	public EjectHatch() {
+	public StartHatchFix() {
 		addSequential(new SetFinger(DoubleSolenoid.Value.kForward));
-		addSequential(new SetPusher(DoubleSolenoid.Value.kForward));
+		addSequential(new WaitCommand(0.375));
+		addSequential(new SetFinger(DoubleSolenoid.Value.kReverse));
 	}
 }

@@ -19,7 +19,7 @@ public class Cargo extends Subsystem {
 	public Cargo() {
 		m_pidController = RobotMap.cargoArmMotor.getPIDController();
 
-		kP = 0.018;
+		kP = 0.02;
 		kI = 0;
 		kD = 0.00001;
 		kIz = 0;
@@ -37,7 +37,7 @@ public class Cargo extends Subsystem {
 		m_pidController.setOutputRange(kMinOutput, kMaxOutput);
 
 
-		SmartDashboard.putNumber("Cargo P Gain", kP);
+		/*SmartDashboard.putNumber("Cargo P Gain", kP);
 		SmartDashboard.putNumber("Cargo I Gain", kI);
 		SmartDashboard.putNumber("Cargo D Gain", kD);
 		//SmartDashboard.putNumber("Cargo I Zone", kIz);
@@ -45,7 +45,7 @@ public class Cargo extends Subsystem {
 		SmartDashboard.putNumber("Cargo Max Output", kMaxOutput);
 		SmartDashboard.putNumber("Cargo Min Output", kMinOutput);
 
-		SmartDashboard.putNumber("Cargo SetPoint", 0);
+		SmartDashboard.putNumber("Cargo SetPoint", 0);*/
 
 		RobotMap.cargoArmMotor.burnFlash();
 	}
@@ -54,7 +54,7 @@ public class Cargo extends Subsystem {
 	public void cargoPeriodic() {
 		SmartDashboard.putNumber("Cargo Pos", RobotMap.cargoEncoder.getPosition()/REV_PER_DEGREE);
 
-		double p = SmartDashboard.getNumber("Cargo P Gain", 0);
+		/*double p = SmartDashboard.getNumber("Cargo P Gain", 0);
 		double i = SmartDashboard.getNumber("Cargo I Gain", 0);
 		double d = SmartDashboard.getNumber("Cargo D Gain", 0);
 		double iz = SmartDashboard.getNumber("Cargo I Zone", 0);
@@ -78,7 +78,7 @@ public class Cargo extends Subsystem {
 		if (sp != setpoint) {
 			m_pidController.setReference(sp*REV_PER_DEGREE, ControlType.kPosition);
 			setpoint = sp;
-		}
+		}*/
 	}
 
 	public void initDefaultCommand() {
