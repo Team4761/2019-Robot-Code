@@ -16,13 +16,14 @@ public class Drivetrain extends Subsystem {
 	private PIDController leftPodPIDController;
 	private PIDController rightPodPIDController;
 
+	private GyroPIDOutput gyroPIDOutput;
 	private PIDController gyroPIDController;
 
 	DoubleEncoderPIDSource leftPIDSource;
 	DoubleEncoderPIDSource rightPIDSource;
 
 	public Drivetrain() {
-		leftPIDSource = new DoubleEncoderPIDSource(RobotMap.frontLeftEncoder, RobotMap.backLeftEncoder, INCHES_PER_TICK);
+		/*leftPIDSource = new DoubleEncoderPIDSource(RobotMap.frontLeftEncoder, RobotMap.backLeftEncoder, INCHES_PER_TICK);
 		rightPIDSource = new DoubleEncoderPIDSource(RobotMap.frontRightEncoder, RobotMap.backRightEncoder, INCHES_PER_TICK);
 		
 		leftPIDSource.setPIDSourceType(PIDSourceType.kDisplacement);
@@ -37,21 +38,51 @@ public class Drivetrain extends Subsystem {
 
 		rightPodPIDController.disable();
 		rightPodPIDController.setAbsoluteTolerance(5.0);
-		rightPodPIDController.setOutputRange(-1.0, 1.0);
+		rightPodPIDController.setOutputRange(-1.0, 1.0);*/
 
-		gyroPIDController = new PIDController(0, 0, 0, RobotMap.gyro, new GyroPIDOutput());
+		gyroPIDOutput = new GyroPIDOutput(RobotMap.robotDrive);
+
+		gyroPIDController = new PIDController(0, 0, 0, RobotMap.gyro, gyroPIDOutput);
 
 		gyroPIDController.disable();
 		gyroPIDController.setAbsoluteTolerance(5);
 		gyroPIDController.setOutputRange(-1.0, 1.0);
 
 		/*SmartDashboard.putData(leftPodPIDController);
-		SmartDashboard.putData(rightPodPIDController);
-		SmartDashboard.putData(gyroPIDController);*/
+		SmartDashboard.putData(rightPodPIDController);*/
+		SmartDashboard.putData(gyroPIDController);
 	}
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new Joyride());
+	}
+
+	public void setGyroAssistMode(boolean isAssisted) {
+		gyroPIDOutput.setAssistMode(isAssisted);
+	}
+
+	public boolean getGyroAssistMode() {
+		return gyroPIDOutput.getAssistMode();
+	}
+
+	public double getGyroPIDOutput() {
+		return gyroPIDController.get();
+	}
+
+	public void setGyroSetpoint(double angle) {
+		gyroPIDController.setSetpoint(angle);
+	}
+
+	public void enableGyroPID() {
+		gyroPIDController.enable();
+	}
+
+	public void disableGyroPID() {
+		gyroPIDController.disable();
+	}
+
+	public boolean isGyroOnTarget() {
+		return gyroPIDController.onTarget();
 	}
 
 	/**
@@ -59,22 +90,23 @@ public class Drivetrain extends Subsystem {
 	 * @param distance Distance in inches
 	 */
 	public void setRelativePosition(double distance) {
-		leftPodPIDController.setSetpoint(leftPIDSource.pidGet() + distance);
-		rightPodPIDController.setSetpoint(rightPIDSource.pidGet() + distance);
+		//leftPodPIDController.setSetpoint(leftPIDSource.pidGet() + distance);
+		//rightPodPIDController.setSetpoint(rightPIDSource.pidGet() + distance);
 	}
 
 	public void enableTranslatePID() {
-		leftPodPIDController.enable();
-		rightPodPIDController.enable();
+		//leftPodPIDController.enable();
+		//rightPodPIDController.enable();
 	}
 
 	public void disableTranslatePID() {
-		leftPodPIDController.disable();
-		rightPodPIDController.disable();
+		//leftPodPIDController.disable();
+		//rightPodPIDController.disable();
 	}
 
 	public boolean isTranslateFinished() {
-		return leftPodPIDController.onTarget() && rightPodPIDController.onTarget();
+		//return leftPodPIDController.onTarget() && rightPodPIDController.onTarget();
+		return true;
 	}
 
 	public void driveArcade(double translate, double rotate) {

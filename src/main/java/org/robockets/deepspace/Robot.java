@@ -84,10 +84,6 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData(moveCargoArm);
     SmartDashboard.putData(new ToggleCompressor());
 
-
-    System.out.println(RobotMap.leftClimber.getFirmwareString());
-    System.out.println(RobotMap.rightClimber.getFirmwareString());
-
     //SmartDashboard.putData(new ExtendPistons());
     //SmartDashboard.putData(new RetractPistons());
 
