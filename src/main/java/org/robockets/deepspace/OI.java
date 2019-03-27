@@ -117,7 +117,8 @@ public class OI {
 		button103.whenPressed(new StartHatchFix());
 		button110.whenPressed(new EjectHatch());
 		button111.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
-		button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
+		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
+		button112.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
 
 		button212.whenPressed(new SetPusher(DoubleSolenoid.Value.kForward));
 		button207.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
