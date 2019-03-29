@@ -109,6 +109,10 @@ public class OI {
 		//selectButton.whileHeld(new RunBottomWheelsManual(0.3));
 		//startButton.whenPressed(new ToggleCompressor());
 
+		bButton.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse)); // Grab Hatch
+
+		xButton.whenPressed(new RunCargoIntake(1)); // Eject Cargo
+
 		/*leftBumper.whileHeld(new MoveArms(-1.0));
 		rightBumper.whileHeld(new MoveArms(1.0));*/
 
