@@ -1,9 +1,11 @@
 package org.robockets.deepspace.drivetrain;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.robockets.deepspace.Robot;
 import org.robockets.deepspace.RobotMap;
 import org.robockets.deepspace.pidoutputs.GyroPIDOutput;
 import org.robockets.deepspace.pidsources.DoubleEncoderPIDSource;
@@ -21,6 +23,8 @@ public class Drivetrain extends Subsystem {
 
 	DoubleEncoderPIDSource leftPIDSource;
 	DoubleEncoderPIDSource rightPIDSource;
+
+	public NetworkTable chickenVisionTable;
 
 	public Drivetrain() {
 		/*leftPIDSource = new DoubleEncoderPIDSource(RobotMap.frontLeftEncoder, RobotMap.backLeftEncoder, INCHES_PER_TICK);
@@ -48,9 +52,12 @@ public class Drivetrain extends Subsystem {
 		gyroPIDController.setAbsoluteTolerance(5);
 		gyroPIDController.setOutputRange(-1.0, 1.0);
 
+		chickenVisionTable = Robot.ntInst.getTable("ChickenVision");
+
 		/*SmartDashboard.putData(leftPodPIDController);
 		SmartDashboard.putData(rightPodPIDController);*/
 		SmartDashboard.putData(gyroPIDController);
+
 	}
 
 	public void initDefaultCommand() {
@@ -83,6 +90,18 @@ public class Drivetrain extends Subsystem {
 
 	public boolean isGyroOnTarget() {
 		return gyroPIDController.onTarget();
+	}
+
+	public void startVisionControl() {
+		chickenVisionTable.getEntry("Tape").setBoolean(true);
+	}
+
+	public boolean canSeeTape() {
+		return chickenVisionTable.getEntry("tapeDetected").getBoolean(false);
+	}
+
+	public double getTapeAngle() {
+		return chickenVisionTable.getEntry("tapeYaw").getDouble(0);
 	}
 
 	/**

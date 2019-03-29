@@ -7,6 +7,7 @@
 
 package org.robockets.deepspace;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,6 +33,7 @@ import org.robockets.deepspace.subsystemlocks.Triggers;
  * project.
  */
 public class Robot extends TimedRobot {
+
   public static Drivetrain drivetrain;
   public static Hatch hatch;
   public static Climber climber;
@@ -48,12 +50,17 @@ public class Robot extends TimedRobot {
 
   Command startDriveStraight;
 
+  public static NetworkTableInstance ntInst;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
+
+
+
     drivetrain = new Drivetrain();
     hatch = new Hatch();
     climber = new Climber();
@@ -68,6 +75,8 @@ public class Robot extends TimedRobot {
     startDriveStraight = new DriveTimed(0.4, 4);
 
     m_oi = new OI();
+
+    ntInst = NetworkTableInstance.getDefault();
 
     RobotMap.leftClimber.setInverted(true);
 
