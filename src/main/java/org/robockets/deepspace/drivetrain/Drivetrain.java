@@ -92,8 +92,18 @@ public class Drivetrain extends Subsystem {
 		return gyroPIDController.onTarget();
 	}
 
-	public void startVisionControl() {
-		chickenVisionTable.getEntry("Tape").setBoolean(true);
+	public void startVisionControl(boolean isTape) {
+
+		if (isTape) {
+			chickenVisionTable.getEntry("Tape").setBoolean(true);
+		} else {
+			chickenVisionTable.getEntry("Cargo").setBoolean(true);
+		}
+	}
+
+	public void stopVisionControl() {
+		chickenVisionTable.getEntry("Tape").setBoolean(false);
+		chickenVisionTable.getEntry("Cargo").setBoolean(false);
 	}
 
 	public boolean canSeeTape() {
