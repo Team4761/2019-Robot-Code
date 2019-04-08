@@ -120,9 +120,9 @@ public class OI {
 		//button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
 		button103.whenPressed(new StartHatchFix());
 		button110.whenPressed(new EjectHatch());
-		button111.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
+		button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
 		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
-		button112.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
+		button111.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
 
 		button212.whenPressed(new SetPusher(DoubleSolenoid.Value.kForward));
 		button207.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
@@ -131,9 +131,9 @@ public class OI {
 		button209.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
 
 		// Cargo
-		button106.whileHeld(new RunCargoIntake(1));
+		button104.whileHeld(new RunCargoIntake(1));
+		button106.whileHeld(new RunCargoIntake(-1));
 		button102.whenPressed(new SetCargoPos(CargoPos.LOW));
-		button109.whileHeld(new RunCargoIntake(-1));
 		button108.whenPressed(new SetCargoPos(CargoPos.CARGO));
 		button122.whenPressed(new SetCargoPos(CargoPos.PICKUP));
 
