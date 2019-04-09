@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.robockets.deepspace.cargo.*;
 import org.robockets.deepspace.climber.*;
 import org.robockets.deepspace.drivetrain.Joyride;
+import org.robockets.deepspace.drivetrain.VisionAssistedControl;
 import org.robockets.deepspace.hatch.*;
 import org.robockets.deepspace.misccommands.ToggleCompressor;
 
@@ -96,10 +97,10 @@ public class OI {
 		/*bButton.whenPressed(new RetractPistons());
 		xButton.whenPressed(new ExtendPistons());*/
 		//yButton.whenPressed(new ToggleCompressor());
-		aButton.whenPressed(new EjectHatch());
+		bButton.whenPressed(new EjectHatch());
 		//bButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kReverse));
 		//xButton.whenPressed(new SetHatch(DoubleSolenoid.Value.kReverse, DoubleSolenoid.Value.kForward));
-		yButton.whenPressed(new Joyride());
+		//yButton.whenPressed(new Joyride());
 		//rightBumper.whenPressed(new ToggleCompressor());
 		//leftBumper.whileHeld(new RunBottomWheelsManual(0.75));
 		//leftBumper.whenPressed(new Climb());
@@ -109,9 +110,13 @@ public class OI {
 		//selectButton.whileHeld(new RunBottomWheelsManual(0.3));
 		//startButton.whenPressed(new ToggleCompressor());
 
-		bButton.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse)); // Grab Hatch
+		rightBumper.whileHeld(new VisionAssistedControl(false, true));
 
-		xButton.whenPressed(new RunCargoIntake(1)); // Eject Cargo
+		aButton.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse)); // Grab Hatch
+
+		startButton.whenPressed(new Joyride());
+
+		yButton.whenPressed(new RunCargoIntake(1)); // Eject Cargo
 
 		/*leftBumper.whileHeld(new MoveArms(-1.0));
 		rightBumper.whileHeld(new MoveArms(1.0));*/
