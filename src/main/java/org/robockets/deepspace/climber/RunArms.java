@@ -17,8 +17,8 @@ public class RunArms extends Command {
 	}
 
 	protected void execute() {
-		boolean isLeft = OI.button119.get();
-		boolean isRight = OI.button120.get();
+		boolean isLeft = OI.button204.get();
+		boolean isRight = OI.button221.get();
 
 		System.out.println(speed);
 

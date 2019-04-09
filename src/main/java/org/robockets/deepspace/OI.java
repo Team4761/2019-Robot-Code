@@ -123,11 +123,11 @@ public class OI {
 
 		// Hatch
 		//button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
-		button103.whenPressed(new StartHatchFix());
-		button110.whenPressed(new EjectHatch());
-		button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
+		button103.whenPressed(new StartHatchFix()); // Center Hatch
+		//button110.whenPressed(new EjectHatch()); // RELEASE HATCH
+		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
 		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
-		button111.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
+		//button111.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
 
 		button212.whenPressed(new SetPusher(DoubleSolenoid.Value.kForward));
 		button207.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
@@ -136,10 +136,10 @@ public class OI {
 		button209.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
 
 		// Cargo
-		button104.whileHeld(new RunCargoIntake(1));
-		button106.whileHeld(new RunCargoIntake(-1));
-		button102.whenPressed(new SetCargoPos(CargoPos.LOW));
-		button108.whenPressed(new SetCargoPos(CargoPos.CARGO));
+		//button104.whileHeld(new RunCargoIntake(1));
+		//button106.whileHeld(new RunCargoIntake(-1));
+		button102.whenPressed(new SetCargoPos(CargoPos.CARGO));
+		button108.whenPressed(new SetCargoPos(CargoPos.LOW));
 		button122.whenPressed(new SetCargoPos(CargoPos.PICKUP));
 
 		button203.whileHeld(new RunCargoIntake(1));

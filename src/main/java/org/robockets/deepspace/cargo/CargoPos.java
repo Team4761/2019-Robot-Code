@@ -4,6 +4,6 @@ public enum CargoPos {
 	START,
 	PICKUP,
 	LOW,
-	MID,
+	BACK,
 	CARGO
 }

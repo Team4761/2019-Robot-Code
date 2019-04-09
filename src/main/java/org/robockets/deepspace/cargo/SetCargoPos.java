@@ -34,15 +34,14 @@ public class SetCargoPos extends Command {
 				Robot.cargo.setSolenoid(DoubleSolenoid.Value.kReverse);
 				Robot.cargo.setArmPosition(-150);
 				break;
-			case MID:
-				//Robot.cargo.setSolenoid(DoubleSolenoid.Value.kReverse);
-				//Robot.cargo.setArmPosition(20); // TODO: Change Me
-				break;
-			case CARGO:
+			case BACK:
 				Robot.cargo.setSolenoid(DoubleSolenoid.Value.kForward);
 				// Wait 1 second
 				isCounting = true;
 				timer.start();
+				break;
+			case CARGO:
+				//TODO: GIVE ME REAL VALUES
 				break;
 		}
 	}
@@ -51,7 +50,7 @@ public class SetCargoPos extends Command {
 		if (isCounting) {
 
 			switch (position) {
-				case CARGO:
+				case BACK:
 					System.out.println(timer.get());
 					if (timer.hasPeriodPassed(0.35)) {
 						Robot.cargo.setArmPosition(-2);
