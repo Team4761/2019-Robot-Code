@@ -15,7 +15,6 @@ import org.robockets.deepspace.climber.*;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.drivetrain.VisionAssistedControl;
 import org.robockets.deepspace.hatch.*;
-import org.robockets.deepspace.misccommands.ToggleCompressor;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -123,7 +122,7 @@ public class OI {
 
 		// Hatch
 		//button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
-		button103.whenPressed(new StartHatchFix()); // Center Hatch
+		button103.whenPressed(new CenterHatch()); // Center Hatch
 		//button110.whenPressed(new EjectHatch()); // RELEASE HATCH
 		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
 		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
