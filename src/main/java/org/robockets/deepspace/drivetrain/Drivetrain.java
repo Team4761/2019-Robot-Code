@@ -26,6 +26,9 @@ public class Drivetrain extends Subsystem {
 
 	public NetworkTable chickenVisionTable;
 
+	public static final double TRANSLATE_MULTIPLIER = 0.85;
+	public static final double ROTATE_MULTIPLIER = 0.85;
+
 	public Drivetrain() {
 		/*leftPIDSource = new DoubleEncoderPIDSource(RobotMap.frontLeftEncoder, RobotMap.backLeftEncoder, INCHES_PER_TICK);
 		rightPIDSource = new DoubleEncoderPIDSource(RobotMap.frontRightEncoder, RobotMap.backRightEncoder, INCHES_PER_TICK);
@@ -56,6 +59,7 @@ public class Drivetrain extends Subsystem {
 
 		/*SmartDashboard.putData(leftPodPIDController);
 		SmartDashboard.putData(rightPodPIDController);*/
+		gyroPIDController.setName("Gyro PID");
 		SmartDashboard.putData(gyroPIDController);
 
 	}

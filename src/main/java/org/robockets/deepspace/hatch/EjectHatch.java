@@ -8,7 +8,7 @@ public class EjectHatch extends CommandGroup {
 
 	public EjectHatch() {
 		addSequential(new SetFinger(DoubleSolenoid.Value.kForward));
-		addSequential(new WaitCommand(0.35));
+		addSequential(new WaitCommand(0.1));
 		addSequential(new SetPusher(DoubleSolenoid.Value.kForward));
 	}
 }

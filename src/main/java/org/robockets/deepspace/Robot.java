@@ -11,7 +11,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.cargo.Cargo;
 import org.robockets.deepspace.cargo.MoveCargoArm;
@@ -21,7 +20,6 @@ import org.robockets.deepspace.drivetrain.DriveTimed;
 import org.robockets.deepspace.drivetrain.Drivetrain;
 import org.robockets.deepspace.drivetrain.Joyride;
 import org.robockets.deepspace.hatch.Hatch;
-import org.robockets.deepspace.hatch.PressureManager;
 import org.robockets.deepspace.misccommands.ToggleCompressor;
 import org.robockets.deepspace.subsystemlocks.Triggers;
 
@@ -58,8 +56,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-
-
+    ntInst = NetworkTableInstance.getDefault();
 
     drivetrain = new Drivetrain();
     hatch = new Hatch();
@@ -69,19 +66,18 @@ public class Robot extends TimedRobot {
 
     joyride = new Joyride();
     moveArms = new MoveArms();
-    pressureManager = new PressureManager();
+    //pressureManager = new PressureManager();
     runCargoIntake = new RunCargoIntake(0.75);
     moveCargoArm = new MoveCargoArm(0);
     startDriveStraight = new DriveTimed(0.4, 4);
 
     m_oi = new OI();
 
-    ntInst = NetworkTableInstance.getDefault();
-
     RobotMap.leftClimber.setInverted(true);
 
     SmartDashboard.putData(new StopPID());
     SmartDashboard.putData(new MoveArmsFixed(12, 1000000));
+
 
     /*SmartDashboard.putData(RobotMap.leftClimber);
     SmartDashboard.putData(RobotMap.rightClimber);*/
@@ -122,6 +118,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Right Limit", climber.isRightLimitPressed());
 
     SmartDashboard.putNumber("Raw Cargo", RobotMap.cargoEncoder.getPosition());
+    SmartDashboard.putNumber("Cargo Pos", RobotMap.cargoEncoder.getPosition()/Robot.cargo.REV_PER_DEGREES);
 
     //RobotMap.ledStrip.set(SmartDashboard.getNumber("LED Val", 0));
 

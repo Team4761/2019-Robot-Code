@@ -4,12 +4,11 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.robockets.deepspace.RobotMap;
 
 public class Cargo extends Subsystem {
 
-	private final double REV_PER_DEGREE = 180.0/179.20675659179688;
+	public final double REV_PER_DEGREES = 72.88323211669922/90.0;
 	private final double ABSOLUTE_TOLERANCE = 5.0; // Degrees
 
 	private CANPIDController m_pidController;
@@ -52,7 +51,7 @@ public class Cargo extends Subsystem {
 
 	@SuppressWarnings("Duplicates")
 	public void cargoPeriodic() {
-		SmartDashboard.putNumber("Cargo Pos", RobotMap.cargoEncoder.getPosition()/REV_PER_DEGREE);
+
 
 		/*double p = SmartDashboard.getNumber("Cargo P Gain", 0);
 		double i = SmartDashboard.getNumber("Cargo I Gain", 0);
@@ -76,7 +75,7 @@ public class Cargo extends Subsystem {
 		}
 
 		if (sp != setpoint) {
-			m_pidController.setReference(sp*REV_PER_DEGREE, ControlType.kPosition);
+			m_pidController.setReference(sp*REV_PER_DEGREES, ControlType.kPosition);
 			setpoint = sp;
 		}*/
 	}
@@ -85,22 +84,18 @@ public class Cargo extends Subsystem {
 	}
 
 	public void setArmPosition(double angle) {
-		m_pidController.setReference(angle*REV_PER_DEGREE, ControlType.kPosition);
-		setpoint = angle*REV_PER_DEGREE;
-	}
-
-	public void moveCargoArm(double speed) {
-		RobotMap.cargoArmMotor.set(speed);
+		m_pidController.setReference(angle* REV_PER_DEGREES, ControlType.kPosition);
+		setpoint = angle* REV_PER_DEGREES;
 	}
 
 	public boolean onTarget() {
-		double currentPos = RobotMap.cargoEncoder.getPosition()/REV_PER_DEGREE;
+		double currentPos = RobotMap.cargoEncoder.getPosition()/ REV_PER_DEGREES;
 
 		return (currentPos>=setpoint-ABSOLUTE_TOLERANCE&&currentPos<=setpoint+ABSOLUTE_TOLERANCE);
 	}
 
 	public void disablePID() {
-		m_pidController.setReference(RobotMap.cargoEncoder.getPosition()/REV_PER_DEGREE, ControlType.kPosition);
+		m_pidController.setReference(RobotMap.cargoEncoder.getPosition()/ REV_PER_DEGREES, ControlType.kPosition);
 	}
 
 	public void setSolenoid(DoubleSolenoid.Value value) {

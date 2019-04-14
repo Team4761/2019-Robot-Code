@@ -35,7 +35,6 @@ public class OI {
 	public static JoystickButton selectButton = new JoystickButton(joystick, 7);
 	public static JoystickButton startButton = new JoystickButton(joystick, 8);
 
-
 	// Operator 1
 	public static Joystick buttonBoard1 = new Joystick(1);
 
@@ -115,7 +114,7 @@ public class OI {
 
 		startButton.whenPressed(new Joyride());
 
-		yButton.whenPressed(new RunCargoIntake(1)); // Eject Cargo
+		yButton.whileHeld(new RunCargoIntake(1)); // Eject Cargo
 
 		/*leftBumper.whileHeld(new MoveArms(-1.0));
 		rightBumper.whileHeld(new MoveArms(1.0));*/
@@ -123,7 +122,7 @@ public class OI {
 		// Hatch
 		//button103.whenPressed(new SetHatch(DoubleSolenoid.Value.kForward, DoubleSolenoid.Value.kForward)); // All out
 		button103.whenPressed(new CenterHatch()); // Center Hatch
-		//button110.whenPressed(new EjectHatch()); // RELEASE HATCH
+		button110.whenPressed(new EjectHatch()); // RELEASE HATCH
 		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kForward));
 		//button112.whenPressed(new SetFinger(DoubleSolenoid.Value.kReverse));
 		//button111.whenPressed(new SetPusher(DoubleSolenoid.Value.kReverse));
@@ -137,9 +136,12 @@ public class OI {
 		// Cargo
 		//button104.whileHeld(new RunCargoIntake(1));
 		//button106.whileHeld(new RunCargoIntake(-1));
+
+
 		button102.whenPressed(new SetCargoPos(CargoPos.CARGO));
 		button108.whenPressed(new SetCargoPos(CargoPos.LOW));
 		button122.whenPressed(new SetCargoPos(CargoPos.PICKUP));
+		button104.whenPressed(new SetCargoPos(CargoPos.BACK));
 
 		button203.whileHeld(new RunCargoIntake(1));
 		button202.whileHeld(new RunCargoIntake(-1));
@@ -154,11 +156,11 @@ public class OI {
 		// Climber
 		button105.whileHeld(new RunBottomWheelsManual(-.6));
 
-		button204.whenPressed(new SetLeftSolenoid(DoubleSolenoid.Value.kReverse));
-		button221.whenPressed(new SetLeftSolenoid(DoubleSolenoid.Value.kForward));
+		//button204.whenPressed(new SetLeftSolenoid(DoubleSolenoid.Value.kReverse));
+		//button221.whenPressed(new SetLeftSolenoid(DoubleSolenoid.Value.kForward));
 
-		button208.whileHeld(new RunArms(-0.55));
-		button211.whileHeld(new RunArms(0.55));
+		button208.whileHeld(new RunArms(-0.65));
+		button211.whileHeld(new RunArms(0.65));
 
 		button205.whenPressed(new ExtendPistons());
 		button210.whenPressed(new RetractPistons());

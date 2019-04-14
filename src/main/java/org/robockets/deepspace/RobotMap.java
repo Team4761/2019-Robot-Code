@@ -83,7 +83,6 @@ public class RobotMap {
     public static AnalogInput pressure1 = new AnalogInput(0);
     public static AnalogInput pressure2 = new AnalogInput(1);
 
-
     public static Spark ledStrip = new Spark(1);
 
 }

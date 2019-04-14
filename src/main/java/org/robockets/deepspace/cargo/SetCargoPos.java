@@ -28,11 +28,11 @@ public class SetCargoPos extends Command {
 				break;
 			case PICKUP:
 				Robot.cargo.setSolenoid(DoubleSolenoid.Value.kForward);
-				Robot.cargo.setArmPosition(-144);
+				Robot.cargo.setArmPosition(-165);
 				break;
 			case LOW:
 				Robot.cargo.setSolenoid(DoubleSolenoid.Value.kReverse);
-				Robot.cargo.setArmPosition(-150);
+				Robot.cargo.setArmPosition(-172);
 				break;
 			case BACK:
 				Robot.cargo.setSolenoid(DoubleSolenoid.Value.kForward);
@@ -42,6 +42,8 @@ public class SetCargoPos extends Command {
 				break;
 			case CARGO:
 				//TODO: GIVE ME REAL VALUES
+				Robot.cargo.setSolenoid(DoubleSolenoid.Value.kForward);
+				Robot.cargo.setArmPosition(-41);
 				break;
 		}
 	}
@@ -53,7 +55,7 @@ public class SetCargoPos extends Command {
 				case BACK:
 					System.out.println(timer.get());
 					if (timer.hasPeriodPassed(0.35)) {
-						Robot.cargo.setArmPosition(-2);
+						Robot.cargo.setArmPosition(0);
 						isCounting = false;
 					}
 					break;

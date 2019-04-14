@@ -8,7 +8,7 @@ public class CenterHatch extends CommandGroup {
 
 	public CenterHatch() {
 		addSequential(new SetFinger(DoubleSolenoid.Value.kForward));
-		addSequential(new WaitCommand(0.1));
+		addSequential(new WaitCommand(0.25));
 		addSequential(new SetFinger(DoubleSolenoid.Value.kReverse));
 	}
 }

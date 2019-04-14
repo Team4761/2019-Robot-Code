@@ -35,8 +35,7 @@ public class VisionAssistedControl extends Command {
 		if (Robot.drivetrain.canSeeTape()) { // Make sure to only run this if can see tape
 			Robot.drivetrain.setRelativePosition(Robot.drivetrain.getTapeAngle());
 
-
-			double translate = OI.joystick.getRawAxis(1) * 0.75;
+			double translate = OI.joystick.getRawAxis(1) * Drivetrain.TRANSLATE_MULTIPLIER;
 			double rotate = Robot.drivetrain.getGyroPIDOutput();
 
 			translate = ((translate - previousTranslate) * RAMP_FACTOR) + previousTranslate;
